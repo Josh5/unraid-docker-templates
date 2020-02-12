@@ -7,7 +7,7 @@
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>true</Privileged>
-  <Support/>
+  <Support>https://forums.unraid.net/topic/79858-support-josh5-docker-templates/</Support>
   <Project>https://hub.docker.com/r/jetbrains/teamcity-agent/</Project>
   <Overview>This is an official JetBrains TeamCity build agent image.&#xD;
 &#xD;

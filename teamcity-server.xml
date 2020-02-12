@@ -7,7 +7,7 @@
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support/>
+  <Support>https://forums.unraid.net/topic/79858-support-josh5-docker-templates/</Support>
   <Project/>
   <Overview>TeamCity Server - Powerful Continuous Integration and Continuous Delivery out of the box&#xD;
 &#xD;
