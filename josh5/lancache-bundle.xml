@@ -62,12 +62,17 @@ On start, this image will download the latest domain list from https://github.co
   <Data>
     <Volume>
       <HostDir>/mnt/user/lancache</HostDir>
-      <ContainerDir>/data</ContainerDir>
+      <ContainerDir>/data/cache</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
       <HostDir>/mnt/user/appdata/lancache-bundle/log/named</HostDir>
       <ContainerDir>/var/log/named</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/lancache-bundle/log/nginx</HostDir>
+      <ContainerDir>/var/log/nginx</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
@@ -105,8 +110,10 @@ On start, this image will download the latest domain list from https://github.co
   </Environment>
   <Labels/>
   <Config Name="LANCACHE_IP" Target="LANCACHE_IP" Default="" Mode="" Description="IP Address of cache container. (Has to be the same as the HOST's IP. If you set the container's IP to 192.168.1.202 this has to be the same. If you use bridge it has to be the same as unRAID's IP.)" Type="Variable" Display="always" Required="true" Mask="false">192.168.1.202</Config>
+  <Config Name="DNS_BIND_IP" Target="DNS_BIND_IP" Default="" Mode="" Description="IP Address of cache container. (Has to be the same as the HOST's IP. If you set the container's IP to 192.168.1.202 this has to be the same. If you use bridge it has to be the same as unRAID's IP.)" Type="Variable" Display="always" Required="true" Mask="false">192.168.1.202</Config>
   <Config Name="data" Target="/data" Default="" Mode="rw" Description="Location to store the cached files" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/lancache</Config>
-  <Config Name="Logs" Target="/var/log/named" Default="" Mode="rw" Description="Location to store the DNS logs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/lancache-bundle/log/named</Config>
+  <Config Name="DNS Logs" Target="/var/log/named" Default="" Mode="rw" Description="Location to store the DNS logs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/lancache-bundle/log/named</Config>
+  <Config Name="Nginx Logs" Target="/var/log/nginx" Default="" Mode="rw" Description="Location to store the Nginx logs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/lancache-bundle/log/nginx</Config>
   <Config Name="CACHE_MEM_SIZE" Target="CACHE_MEM_SIZE" Default="" Mode="" Description="Memory size for the cache" Type="Variable" Display="always" Required="false" Mask="false">500m</Config>
   <Config Name="CACHE_DISK_SIZE" Target="CACHE_DISK_SIZE" Default="" Mode="" Description="Max size for the cache" Type="Variable" Display="always" Required="false" Mask="false">2000g</Config>
   <Config Name="CACHE_MAX_AGE" Target="CACHE_MAX_AGE" Default="" Mode="" Description="Max age for files in the cache" Type="Variable" Display="always" Required="false" Mask="false">150d</Config>
