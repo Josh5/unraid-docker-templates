@@ -7,7 +7,7 @@
     <Shell>bash</Shell>
     <Privileged>false</Privileged>
     <Support>https://forums.unraid.net/topic/76878-support-josh5-unmanic-library-optimiser/</Support>
-    <Project>https://github.com/Josh5/unmanic</Project>
+    <Project>https://github.com/unmanic/unmanic</Project>
     <Overview>
         [br]Unmanic is a simple tool for optimising your video library to a single format.
         [br]Remove the complexity of automatically converting your media library.
