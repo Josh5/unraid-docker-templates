@@ -34,7 +34,7 @@
         [br]To limit the CPU cores available to the continer, use [b]"CPU Pinning"[/b][/pre]
         [br]
     </Overview>
-    <Category>Productivity: Status:Beta</Category>
+    <Category>Productivity: Status:Stable</Category>
     <WebUI>http://[IP]:[PORT:8888]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/unmanic.xml
     </TemplateURL>
