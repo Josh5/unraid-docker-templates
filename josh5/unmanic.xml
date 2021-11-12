@@ -33,6 +33,11 @@
         [pre]This example limits the container to 50% of a single core. 
         [br]If you have 2 cores available to this container, "[b]--cpus='.5'[/b]" will equal 25% of that available CPU resources.
         [br]To limit the CPU cores available to the continer, use [b]"CPU Pinning"[/b][/pre]
+        [br][b][span style='color: #0000E8;']Limit RAM allocation (optional):[/span][/b]
+        [br] 1) Toggle this Docker Container template editor to [b]"Advanced View"[/b].
+        [br] 2) In the [b]"Extra Parameters"[/b] field, add "[b]--memory='1g'[/b]".
+        [br] Unmanic can use on average around 100Mib - 500 Mib of RAM for various Disk IO tasks.
+        [br] Even though limiting RAM is unnecessary as Unmanic should not ever need more that 1GB RAM it is good practice to do so.
         [br]
     </Overview>
     <Category>Productivity: Status:Stable</Category>
