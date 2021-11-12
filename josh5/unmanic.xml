@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
     <Name>unmanic</Name>
-    <Repository>josh5/unmanic</Repository>
+    <Repository>josh5/unmanic:latest</Repository>
     <Registry>https://hub.docker.com/r/josh5/unmanic/</Registry>
     <Network>bridge</Network>
     <Shell>bash</Shell>
@@ -30,7 +30,8 @@
         [br][b][span style='color: #0000E8;']Limit CPU Use:[/span][/b]
         [br] 1) Toggle this Docker Container template editor to [b]"Advanced View"[/b].
         [br] 2) In the [b]"Extra Parameters"[/b] field, add "[b]--cpus='.5'[/b]".
-        [pre]This example limits the container to 50% on all available cores.
+        [pre]This example limits the container to 50% of a single core. 
+        [br]If you have 2 cores available to this container, "[b]--cpus='.5'[/b]" will equal 25% of that available CPU resources.
         [br]To limit the CPU cores available to the continer, use [b]"CPU Pinning"[/b][/pre]
         [br]
     </Overview>
@@ -38,7 +39,7 @@
     <WebUI>http://[IP]:[PORT:8888]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/unmanic.xml
     </TemplateURL>
-    <Icon>https://raw.githubusercontent.com/Josh5/unmanic/master/icon.png</Icon>
+    <Icon>https://raw.githubusercontent.com/Unmanic/unmanic/master/icon.png</Icon>
     <Config
             Name="WebUI" Target="8888" Default="8888" Mode="tcp"
             Description="Container Port: 8888"
