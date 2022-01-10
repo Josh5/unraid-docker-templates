@@ -45,6 +45,18 @@
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/unmanic.xml
     </TemplateURL>
     <Icon>https://raw.githubusercontent.com/Unmanic/unmanic/master/icon.png</Icon>
+    <ExtraParams/>
+    <PostArgs/>
+    <CPUset/>
+    <DonateText>Support me on Patreon</DonateText>
+    <DonateLink>https://www.patreon.com/josh5</DonateLink>
+    <Description>Unmanic is a simple tool for optimising your file library to a single format.&#xD;
+&#xD;
+Remove the complexity of automatically converting your media library.&#xD;
+Simply point Unmanic at your library and let it manage it for you.&#xD;
+&#xD;
+</Description>
+
     <Config
             Name="WebUI" Target="8888" Default="8888" Mode="tcp"
             Description="Container Port: 8888"

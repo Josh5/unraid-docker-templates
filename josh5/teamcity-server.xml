@@ -20,8 +20,8 @@ This is an official JetBrains TeamCity server image. The image is suitable for p
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1557045075</DateInstalled>
-  <DonateText/>
-  <DonateLink/>
+  <DonateText>Support me on Patreon</DonateText>
+  <DonateLink>https://www.patreon.com/josh5</DonateLink>
   <Description>TeamCity Server - Powerful Continuous Integration and Continuous Delivery out of the box&#xD;
 &#xD;
 This is an official JetBrains TeamCity server image. The image is suitable for production use and evaluation purposes.</Description>

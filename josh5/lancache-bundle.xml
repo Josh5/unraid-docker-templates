@@ -21,14 +21,14 @@ On start, this image will download the latest domain list from https://github.co
 </Overview>
   <Category>Backup: GameServers: Tools:</Category>
   <WebUI/>
-  <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/lancache-bundle.xml</TemplateURL>
+  <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/lancache-bundle.xml</TemplateURL>
   <Icon>https://github.com/Josh5/lancache-bundle/raw/master/lancache-bundle-logo.png</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1581498411</DateInstalled>
-  <DonateText>Buy Me a Coffee</DonateText>
-  <DonateLink>https://ko-fi.com/josh5coffee</DonateLink>
+  <DonateText>Support me on Patreon</DonateText>
+  <DonateLink>https://www.patreon.com/josh5</DonateLink>
   <Description>An all in one lancache docker providing a combination of the following three projects:&#xD;
 https://github.com/lancachenet/lancache-dns&#xD;
 https://github.com/lancachenet/monolithic&#xD;

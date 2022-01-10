@@ -26,8 +26,8 @@ more bundled build tools&#xD;
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1557045872</DateInstalled>
-  <DonateText/>
-  <DonateLink/>
+  <DonateText>Support me on Patreon</DonateText>
+  <DonateLink>https://www.patreon.com/josh5</DonateLink>
   <Description>This is an official JetBrains TeamCity build agent image.&#xD;
 &#xD;
 The TeamCity build agent connects to the TeamCity server and spawns the actual build processes. You can use the jetbrains/teamcity-server image to run a TeamCity server.&#xD;
