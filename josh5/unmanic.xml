@@ -40,7 +40,7 @@
         [br] Even though limiting RAM is unnecessary as Unmanic should not ever need more that 1GB RAM it is good practice to do so.
         [br]
     </Overview>
-    <Category>Productivity: Status:Stable</Category>
+    <Category>Productivity: MediaApp:Video Status:Stable</Category>
     <WebUI>http://[IP]:[PORT:8888]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/unmanic.xml
     </TemplateURL>
