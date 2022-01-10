@@ -78,7 +78,9 @@ Based on Debain bullseye-slim&#xD;
             <Mode>rw</Mode>
         </Volume>
     </Data>
-    <Requires />
+    <Requires>
+        **Nvidia Driver plugin** (nVidia Support)
+    </Requires>
     <Config Name="Appdata" Target="/home/default" Default="/mnt/user/appdata/steam-headless" Mode="rw" Description="Default user home directory.&#13;&#10;All application software and configuration will be saved into this directory.&#13;&#10;Any files saved outside of this path will be cleared if the container image this templated is updated." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/steam-headless</Config>
     <Config Name="Games" Target="/games" Default="/mnt/user/Games" Mode="rw" Description="Option path to your games.&#13;&#10;This path will need to also be configured in Steam after the first boot." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Games</Config>
     <Config Name="User password" Target="USER_PASSWORD" Default="password" Mode="" Description="The password for this container.&#13;&#10;Note: This password will also be used for the root user. However, the default user has sudo access." Type="Variable" Display="always" Required="false" Mask="true">password</Config>
@@ -86,6 +88,6 @@ Based on Debain bullseye-slim&#xD;
     <Config Name="Locales" Target="USER_LOCALES" Default="en_US.UTF-8 UTF-8" Mode="" Description="Enter your prefered locales.&#13;&#10;You can find a full list of supported languages &#13;&#10;in: '/usr/share/i18n/SUPPORTED' (eg: 'en_US.UTF-8 UTF8' or 'de_DE.UTF-8 UTF-8',...)" Type="Variable" Display="always" Required="false" Mask="false">en_US.UTF-8 UTF-8</Config>
     <Config Name="Nvidia GPU UUID" Target="NVIDIA_VISIBLE_DEVICES" Default="all" Mode="" Description="For users with multiple GPUs, add the ID found under the " Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
     <Config Name="Driver Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="all" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
-    <Config Name="WebUI" Target="" Default="8083" Mode="tcp" Description="" Type="Port" Display="advanced" Required="false" Mask="false">8083</Config>
-    <Config Name="Websocket" Target="" Default="32123" Mode="tcp" Description="Websocket (Required for audio playback through WebUI)" Type="Port" Display="advanced" Required="false" Mask="false">32123</Config>
+    <Config Name="WebUI" Target="8083" Default="8083" Mode="tcp" Description="" Type="Port" Display="advanced" Required="false" Mask="false">8083</Config>
+    <Config Name="Websocket" Target="32123" Default="32123" Mode="tcp" Description="Websocket (Required for audio playback through WebUI)" Type="Port" Display="advanced" Required="false" Mask="false">32123</Config>
 </Container>
