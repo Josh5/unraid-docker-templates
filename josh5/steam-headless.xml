@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>steam-headless</Name>
+  <Repository>josh5/steam-headless:latest</Repository>
+  <Registry>https://hub.docker.com/r/josh5/steam-headless</Registry>
+  <Network>br0</Network>
+  <MyIP>192.168.1.10</MyIP>
+  <Shell>bash</Shell>
+  <Privileged>true</Privileged>
+  <Support>https://forums.unraid.net/topic/118390-support-josh5-steam-headless/</Support>
+  <Project>https://store.steampowered.com/</Project>
+  <Overview># Headless Steam Service&#xD;
+&#xD;
+Play your games in the browser with audio. Connect another device and use it with Steam Remote Play. &#xD;
+&#xD;
+## Features:&#xD;
+- Full video/audio noVNC web access to a Xfce4 Desktop&#xD;
+- NVIDIA GPU support&#xD;
+- Root access&#xD;
+- SSH server for remote terminal access&#xD;
+&#xD;
+---&#xD;
+## Notes:&#xD;
+&#xD;
+### ADDITIONAL SOFTWARE:&#xD;
+If you wish to install additional applications, you can generate a&#xD;
+script inside the `~/init.d` directory ending with ".sh". This will be executed on the container startup.&#xD;
+&#xD;
+### STORAGE PATHS:&#xD;
+Everything that you wish to save in this container should be stored in the home directory or a docker container mount that you have specified. All files that are store outside your home directory are not persistent and will be wiped if there is an update of the container or you change something in the template.&#xD;
+&#xD;
+### GAMES LIBRARY:&#xD;
+It is recommended that you mount your games library to `/games` and configure Steam to add that path.&#xD;
+&#xD;
+### AUTO START APPLICATIONS:&#xD;
+In this container, Steam is configured to automatically start. If you wish to add additional services to automatically start, add them under **Applications &amp;gt; Settings &amp;gt; Session and Startup** in the WebUI.&#xD;
+&#xD;
+### NETWORK MODE:&#xD;
+If you want to use the container as a Steam Remote Play (previously "In Home Streaming") host device you should set the **"Network Type:"** to *"Custom: br0"* and assign it it's own **"Fixed IP address"**. Ff you don't do this the traffic will be routed through the internet since Steam thinks you are on a different network.&#xD;
+</Overview>
+  <Category>GameServers: Status:Stable</Category>
+  <WebUI>http://[IP]:[PORT:8083]/</WebUI>
+  <TemplateURL/>
+  <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
+  <ExtraParams>--hostname='steam-headless' --restart=unless-stopped --shm-size=2G --runtime=nvidia</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1641819645</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Appdata" Target="/home/default" Default="/mnt/user/appdata/steam-headless" Mode="rw" Description="Default user home directory.&#13;&#10;All application software and configuration will be saved into this directory.&#13;&#10;Any files saved outside of this path will be cleared if the container image this templated is updated." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/steam-headless</Config>
+  <Config Name="Games" Target="/games" Default="/mnt/user/Games" Mode="rw" Description="Option path to your games.&#13;&#10;This path will need to also be configured in Steam after the first boot." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Games</Config>
+  <Config Name="User password" Target="USER_PASSWORD" Default="password" Mode="" Description="The password for this container.&#13;&#10;Note: This password will also be used for the root user. However, the default user has sudo access." Type="Variable" Display="always" Required="false" Mask="true">password</Config>
+  <Config Name="Timezone" Target="TZ" Default="Pacific/Auckland" Mode="" Description="Enter your local timezone.&#13;&#10;You can find a full list of supported timezones &#13;&#10;in: '/usr/share/zoneinfo' (eg: 'Etc/UTC' or 'Australia/Melbourne',...)" Type="Variable" Display="always" Required="false" Mask="false">Pacific/Auckland</Config>
+  <Config Name="Locales" Target="USER_LOCALES" Default="en_US.UTF-8 UTF-8" Mode="" Description="Enter your prefered locales.&#13;&#10;You can find a full list of supported languages &#13;&#10;in: '/usr/share/i18n/SUPPORTED' (eg: 'en_US.UTF-8 UTF8' or 'de_DE.UTF-8 UTF-8',...)" Type="Variable" Display="always" Required="false" Mask="false">en_US.UTF-8 UTF-8</Config>
+  <Config Name="Nvidia GPU UUID" Target="NVIDIA_VISIBLE_DEVICES" Default="all" Mode="" Description="For users with multiple GPUs, add the ID found under the " Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
+  <Config Name="Driver Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="all" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
+  <Config Name="WebUI" Target="" Default="8083" Mode="tcp" Description="" Type="Port" Display="advanced" Required="false" Mask="false">8083</Config>
+  <Config Name="Websocket" Target="" Default="32123" Mode="tcp" Description="Websocket (Required for audio playback through WebUI)" Type="Port" Display="advanced" Required="false" Mask="false">32123</Config>
+</Container>
