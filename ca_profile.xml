@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maintainer>
+    <Icon>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/images/josh5.md</Icon>
+    <Profile>
+        Software Developer, DevOps Engineer and Electrical Technician. In my spare time I enjoy writing software for the open-source community. I deal a lot with Docker on a day-to-day basis and have experience in embedded Linux development.
+    </Profile>
+    <DonateText>If you like my work, please consider supporting me on Patreon</DonateText>
+    <DonateLink>https://www.patreon.com/josh5</DonateLink>
+    <WebPage>https://github.com/Josh5/</WebPage>
+    <Discord>https://unmanic.app/discord</Discord>
+    <Twitter>https://twitter.com/jsunnex</Twitter>
+</Maintainer>
