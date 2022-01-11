@@ -17,6 +17,7 @@ Play your games in the browser with audio. Connect another device and use it wit
 - NVIDIA GPU support&#xD;
 - Root access&#xD;
 - SSH server for remote terminal access&#xD;
+- Based on Debain Bullseye&#xD;
 &#xD;
 ---&#xD;
 ## Notes:&#xD;
@@ -36,30 +37,28 @@ In this container, Steam is configured to automatically start. If you wish to ad
 &#xD;
 ### NETWORK MODE:&#xD;
 If you want to use the container as a Steam Remote Play (previously "In Home Streaming") host device you should set the **"Network Type:"** to *"Custom: br0"* and assign it it's own **"Fixed IP address"**. Ff you don't do this the traffic will be routed through the internet since Steam thinks you are on a different network.&#xD;
+&#xD;
+### USING HOST X SERVER:&#xD;
+If your host is already running X, you can just use that. To do this, be sure to configure:&#xD;
+  - DISPLAY=:0    &#xD;
+    **(Variable)** - *Configures the sceen to use the primary display. Set this to whatever your host is using*&#xD;
+  - MODE=secondary    &#xD;
+    **(Variable)** - *Configures the container to not start an X server of its own*&#xD;
+  - HOST_DBUS=true    &#xD;
+    **(Variable)** - *Optional - Configures the container to use the host dbus process*&#xD;
+  - /run/dbus:/run/dbus:ro    &#xD;
+    **(Mount)**  - *Optional - Configures the container to use the host dbus process*&#xD;
 </Overview>
     <Category>GameServers: Status:Stable</Category>
     <WebUI>http://[IP]:[PORT:8083]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
-    <ExtraParams>--runtime=nvidia --hostname='steam-headless' --restart=unless-stopped --shm-size=2G</ExtraParams>
+    <ExtraParams>--runtime=nvidia --hostname='steam-headless' --restart=unless-stopped --shm-size=2G --ipc="host"</ExtraParams>
     <PostArgs />
     <CPUset />
     <DateInstalled>1641819645</DateInstalled>
     <DonateText>Support me on Patreon</DonateText>
     <DonateLink>https://www.patreon.com/josh5</DonateLink>
-    <Description>Headless Steam Service&#xD;
-&#xD;
-Play your games in the browser with audio. Connect another device and use it with Steam Remote Play. Easily deploy a Steam Docker instance in seconds.&#xD;
-&#xD;
-Features:&#xD;
-- Full video/audio noVNC web access to a Xfce4 Desktop&#xD;
-- NVIDIA GPU support&#xD;
-- Root access&#xD;
-- SSH server for remote terminal access&#xD;
-&#xD;
-Based on Debain bullseye-slim&#xD;
-&#xD;
-</Description>
     <Requires>
         **Nvidia Driver plugin** (nVidia Support)
     </Requires>
@@ -72,4 +71,7 @@ Based on Debain bullseye-slim&#xD;
     <Config Name="Driver Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="all" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
     <Config Name="WebUI" Target="8083" Default="8083" Mode="tcp" Description="" Type="Port" Display="advanced" Required="false" Mask="false">8083</Config>
     <Config Name="Websocket" Target="32123" Default="32123" Mode="tcp" Description="Websocket (Required for audio playback through WebUI)" Type="Port" Display="advanced" Required="false" Mask="false">32123</Config>
+    <Config Name="Display ID" Target="DISPLAY" Default=":55" Mode="" Description="Set the X display. To use the host X server, set this to :0 (or whatever your host is currently running in /tmp/.X11-unix/X*)" Type="Variable" Display="advanced" Required="false" Mask="false">:55</Config>
+    <Config Name="Mode" Target="MODE" Default="primary" Mode="" Description="Options: ['primary', 'secondary']. Most of the time this should be set to 'primary' on a headless server. If your server is already running an X server that you wish to use, set this to 'secondary'." Type="Variable" Display="advanced" Required="false" Mask="false">primary</Config>
+    <Config Name="X Server Socket" Target="/tmp/.X11-unix" Default="/tmp/.X11-unix" Mode="rw" Description="The path to the .Xorg socket. This can be used to allow multiple containers to use a single X server." Type="Path" Display="advanced" Required="false" Mask="false">/tmp/.X11-unix</Config>
 </Container>
