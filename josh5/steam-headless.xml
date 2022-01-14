@@ -3,8 +3,8 @@
     <Name>steam-headless</Name>
     <Repository>josh5/steam-headless:latest</Repository>
     <Registry>https://hub.docker.com/r/josh5/steam-headless</Registry>
-    <Network>br0</Network>
-    <MyIP>192.168.1.10</MyIP>
+    <Network>host</Network>
+    <MyIP />
     <Shell>bash</Shell>
     <Privileged>true</Privileged>
     <Support>https://forums.unraid.net/topic/118390-support-josh5-steam-headless/</Support>
@@ -15,8 +15,9 @@ Play your games in the browser with audio. Connect another device and use it wit
 ## Features:&#xD;
 - Full video/audio noVNC web access to a Xfce4 Desktop&#xD;
 - NVIDIA GPU support&#xD;
+- Full controller support (requires ich777's Joydev plugin installed)&#xD;
+- SSH server for remote terminal access (port 2222)&#xD;
 - Root access&#xD;
-- SSH server for remote terminal access&#xD;
 - Based on Debain Bullseye&#xD;
 &#xD;
 ---&#xD;
@@ -36,7 +37,10 @@ It is recommended that you mount your games library to `/games` and configure St
 In this container, Steam is configured to automatically start. If you wish to add additional services to automatically start, add them under **Applications &amp;gt; Settings &amp;gt; Session and Startup** in the WebUI.&#xD;
 &#xD;
 ### NETWORK MODE:&#xD;
-If you want to use the container as a Steam Remote Play (previously "In Home Streaming") host device you should set the **"Network Type:"** to *"Custom: br0"* and assign it it's own **"Fixed IP address"**. Ff you don't do this the traffic will be routed through the internet since Steam thinks you are on a different network.&#xD;
+If you want to use the container as a Steam Remote Play (previously "In Home Streaming") host device you should set the **"Network Type:"** to *"Host"*. This is a requirement for controller hardware to work and to prevent traffic being routed through the internet since Steam thinks you are on a different network.&#xD;
+&#xD;
+### NVIDIA GPU:&#xD;
+To enable NVIDIA GPU support, ensure that you have the *"--runtime=nvidia"* parameter added to **"Extra Parameters:"**&#xD;
 &#xD;
 ### USING HOST X SERVER:&#xD;
 If your host is already running X, you can just use that. To do this, be sure to configure:&#xD;
@@ -53,14 +57,14 @@ If your host is already running X, you can just use that. To do this, be sure to
     <WebUI>http://[IP]:[PORT:8083]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
-    <ExtraParams>--runtime=nvidia --hostname='steam-headless' --restart=unless-stopped --shm-size=2G --ipc="host"</ExtraParams>
+    <ExtraParams>--runtime=nvidia --hostname='steam-headless' --restart=unless-stopped --shm-size=2G --ipc="host" -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/dev/input':'/dev/input':'ro'</ExtraParams>
     <PostArgs />
     <CPUset />
     <DateInstalled>1641819645</DateInstalled>
     <DonateText>Support me on Patreon</DonateText>
     <DonateLink>https://www.patreon.com/josh5</DonateLink>
-    <Requires>
-        **Nvidia Driver plugin** (nVidia Support)
+    <Requires>&#xD;
+        **Nvidia Driver plugin** (nVidia Support)&#xD;
     </Requires>
     <Config Name="Appdata" Target="/home/default" Default="/mnt/user/appdata/steam-headless" Mode="rw" Description="Default user home directory.&#13;&#10;All application software and configuration will be saved into this directory.&#13;&#10;Any files saved outside of this path will be cleared if the container image this templated is updated." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/steam-headless</Config>
     <Config Name="Games" Target="/games" Default="/mnt/user/Games" Mode="rw" Description="Option path to your games.&#13;&#10;This path will need to also be configured in Steam after the first boot." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Games</Config>
@@ -71,7 +75,8 @@ If your host is already running X, you can just use that. To do this, be sure to
     <Config Name="Driver Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="all" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
     <Config Name="WebUI" Target="8083" Default="8083" Mode="tcp" Description="" Type="Port" Display="advanced" Required="false" Mask="false">8083</Config>
     <Config Name="Websocket" Target="32123" Default="32123" Mode="tcp" Description="Websocket (Required for audio playback through WebUI)" Type="Port" Display="advanced" Required="false" Mask="false">32123</Config>
+    <Config Name="SSH" Target="2222" Default="2222" Mode="tcp" Description="OpenSSH Server Port.&#13;&#10;To avoid conflicts, this has been configured to run on a non-default port" Type="Port" Display="advanced" Required="false" Mask="false">2222</Config>
+    <Config Name="Enable WebUI Audio" Target="ENABLE_VNC_AUDIO" Default="true" Mode="" Description="Enable WebUI Audio. This creats a opus encoded audio websocket that will tie into the VNC WebUI. Disable this if your browser is incompatible or you do not wish for this additional process overhead." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
     <Config Name="Display ID" Target="DISPLAY" Default=":55" Mode="" Description="Set the X display. To use the host X server, set this to :0 (or whatever your host is currently running in /tmp/.X11-unix/X*)" Type="Variable" Display="advanced" Required="false" Mask="false">:55</Config>
     <Config Name="Mode" Target="MODE" Default="primary" Mode="" Description="Options: ['primary', 'secondary']. Most of the time this should be set to 'primary' on a headless server. If your server is already running an X server that you wish to use, set this to 'secondary'." Type="Variable" Display="advanced" Required="false" Mask="false">primary</Config>
-    <Config Name="X Server Socket" Target="/tmp/.X11-unix" Default="/tmp/.X11-unix" Mode="rw" Description="The path to the .Xorg socket. This can be used to allow multiple containers to use a single X server." Type="Path" Display="advanced" Required="false" Mask="false">/tmp/.X11-unix</Config>
 </Container>
