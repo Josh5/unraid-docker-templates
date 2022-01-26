@@ -31,7 +31,7 @@ script inside the `~/init.d` directory ending with ".sh". This will be executed 
 Everything that you wish to save in this container should be stored in the home directory or a docker container mount that you have specified. All files that are store outside your home directory are not persistent and will be wiped if there is an update of the container or you change something in the template.&#xD;
 &#xD;
 ### GAMES LIBRARY:&#xD;
-It is recommended that you mount your games library to `/games` and configure Steam to add that path.&#xD;
+It is recommended that you mount your games library to `/mnt/games` and configure Steam to add that path.&#xD;
 &#xD;
 ### AUTO START APPLICATIONS:&#xD;
 In this container, Steam is configured to automatically start. If you wish to add additional services to automatically start, add them under **Applications &amp;gt; Settings &amp;gt; Session and Startup** in the WebUI.&#xD;
@@ -67,7 +67,7 @@ If your host is already running X, you can just use that. To do this, be sure to
         **Nvidia Driver plugin** (nVidia Support)&#xD;
     </Requires>
     <Config Name="Appdata" Target="/home/default" Default="/mnt/user/appdata/steam-headless" Mode="rw" Description="Default user home directory.&#13;&#10;All application software and configuration will be saved into this directory.&#13;&#10;Any files saved outside of this path will be cleared if the container image this templated is updated." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/steam-headless</Config>
-    <Config Name="Games" Target="/games" Default="/mnt/user/Games" Mode="rw" Description="Option path to your games.&#13;&#10;This path will need to also be configured in Steam after the first boot." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Games</Config>
+    <Config Name="Games" Target="/mnt/games" Default="/mnt/user/Games" Mode="rw" Description="Option path to your games.&#13;&#10;This path will need to also be configured in Steam after the first boot." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Games</Config>
     <Config Name="User password" Target="USER_PASSWORD" Default="password" Mode="" Description="The password for this container.&#13;&#10;Note: This password will also be used for the root user. However, the default user has sudo access." Type="Variable" Display="always" Required="false" Mask="true">password</Config>
     <Config Name="Timezone" Target="TZ" Default="Pacific/Auckland" Mode="" Description="Enter your local timezone.&#13;&#10;You can find a full list of supported timezones &#13;&#10;in: '/usr/share/zoneinfo' (eg: 'Etc/UTC' or 'Australia/Melbourne',...)" Type="Variable" Display="always" Required="false" Mask="false">Pacific/Auckland</Config>
     <Config Name="Locales" Target="USER_LOCALES" Default="en_US.UTF-8 UTF-8" Mode="" Description="Enter your prefered locales.&#13;&#10;You can find a full list of supported languages &#13;&#10;in: '/usr/share/i18n/SUPPORTED' (eg: 'en_US.UTF-8 UTF8' or 'de_DE.UTF-8 UTF-8',...)" Type="Variable" Display="always" Required="false" Mask="false">en_US.UTF-8 UTF-8</Config>
