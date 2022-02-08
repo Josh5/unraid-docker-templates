@@ -40,7 +40,10 @@ In this container, Steam is configured to automatically start. If you wish to ad
 If you want to use the container as a Steam Remote Play (previously "In Home Streaming") host device you should set the **"Network Type:"** to *"Host"*. This is a requirement for controller hardware to work and to prevent traffic being routed through the internet since Steam thinks you are on a different network.&#xD;
 &#xD;
 ### NVIDIA GPU:&#xD;
-To enable NVIDIA GPU support, ensure that you have the *"--runtime=nvidia"* parameter added to **"Extra Parameters:"**&#xD;
+To enable NVIDIA GPU support, ensure that you have installed the **Nvidia-Driver** plugin and add the *"--runtime=nvidia"* parameter added to **"Extra Parameters:"**&#xD;
+&#xD;
+### AMD GPU:&#xD;
+To enable AMD GPU support, ensure that you have installed the **Radeon-TOP** plugin.&#xD;
 &#xD;
 ### USING HOST X SERVER:&#xD;
 If your host is already running X, you can just use that. To do this, be sure to configure:&#xD;
@@ -57,14 +60,15 @@ If your host is already running X, you can just use that. To do this, be sure to
     <WebUI>http://[IP]:[PORT:8083]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
-    <ExtraParams>--runtime=nvidia --hostname='steam-headless' --restart=unless-stopped --shm-size=2G --ipc="host" -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/dev/input':'/dev/input':'ro'</ExtraParams>
+    <ExtraParams>--hostname='SteamHeadless' --add-host='SteamHeadless:127.0.0.1' --restart=unless-stopped --shm-size=2G --ipc="host" -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/dev/input':'/dev/input':'ro'</ExtraParams>
     <PostArgs />
     <CPUset />
     <DateInstalled>1641819645</DateInstalled>
     <DonateText>Support me on Patreon</DonateText>
     <DonateLink>https://www.patreon.com/josh5</DonateLink>
     <Requires>&#xD;
-        **Nvidia Driver plugin** (nVidia Support)&#xD;
+        **Nvidia-Driver plugin** (nVidia Support)&#xD;
+        **Radeon-TOP plugin** (AMD Support)&#xD;
     </Requires>
     <Config Name="Appdata" Target="/home/default" Default="/mnt/user/appdata/steam-headless" Mode="rw" Description="Default user home directory.&#13;&#10;All application software and configuration will be saved into this directory.&#13;&#10;Any files saved outside of this path will be cleared if the container image this templated is updated." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/steam-headless</Config>
     <Config Name="Games" Target="/mnt/games" Default="/mnt/user/Games" Mode="rw" Description="Option path to your games.&#13;&#10;This path will need to also be configured in Steam after the first boot." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Games</Config>
