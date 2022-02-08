@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<Container version="2">
+    <Name>steam-headless-secondary</Name>
+    <Repository>josh5/steam-headless:develop</Repository>
+    <Registry>https://hub.docker.com/r/josh5/steam-headless</Registry>
+    <Network>br0</Network>
+    <MyIP>192.168.1.207</MyIP>
+    <Shell>bash</Shell>
+    <Privileged>true</Privileged>
+    <Support>https://forums.unraid.net/topic/118390-support-josh5-steam-headless/</Support>
+    <Project>https://store.steampowered.com/</Project>
+    <Overview>Headless Steam Service (Secondary)&#xD;
+This container relies on an existing working SteamHeadless running.&#xD;
+&#xD;
+## Features:&#xD;
+- Run a second (or third or fourth) instance of steam on the Steam Headless desktop.&#xD;
+- All the same features as Steam Headless accessed through an existing Steam Headless container&#xD;
+&#xD;
+&#xD;
+---&#xD;
+## Notes:&#xD;
+&#xD;
+### NETWORK TYPE:&#xD;
+Each instance of this container should be run on a "**Custom: br0**" network and should be configured with a unique "**Fixed IP address**".&#xD;
+&#xD;
+### RUNNING MULTIPLE INSTANCES:&#xD;
+Only one instance of Steam Headless can play a game at any time. If you start a second Remote Play link, it wil hijack the virtual monitor, and all input devices from the first one.&#xD;
+&#xD;
+### STORAGE PATHS:&#xD;
+Everything that you wish to save in this container should be stored in the home directory or a docker container mount that you have specified. All files that are store outside your home directory are not persistent and will be wiped if there is an update of the container or you change something in the template.&#xD;
+&#xD;
+### GAMES LIBRARY:&#xD;
+It is recommended that you mount your games library to `/mnt/games` and configure Steam to add that path.&#xD;
+&#xD;
+### NVIDIA GPU:&#xD;
+To enable NVIDIA GPU support, ensure that you have the *"--runtime=nvidia"* parameter added to **"Extra Parameters:"**&#xD;
+</Overview>
+    <Category>GameServers: Status:Stable</Category>
+    <WebUI />
+    <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless-secondary.xml</TemplateURL>
+    <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
+    <ExtraParams>--hostname='SteamHeadlessSecondary' --add-host='SteamHeadlessSecondary:127.0.0.1' --restart=unless-stopped --shm-size=2G -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/dev/input':'/dev/input':'ro'</ExtraParams>
+    <PostArgs />
+    <CPUset />
+    <DateInstalled>1644298827</DateInstalled>
+    <DonateText>Support me on Patreon</DonateText>
+    <DonateLink>https://www.patreon.com/josh5</DonateLink>
+    <Requires>**Steam Headless**</Requires>
+    <Config Name="Appdata" Target="/home/default" Default="/mnt/user/appdata/steam-headless-secondary" Mode="rw" Description="Default user home directory.&#13;&#10;All application software and configuration will be saved into this directory.&#13;&#10;Any files saved outside of this path will be cleared if the container image this templated is updated." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/steam-headless-secondary</Config>
+    <Config Name="Games" Target="/mnt/games" Default="/mnt/user/Games" Mode="rw" Description="Option path to your games.&#13;&#10;This path will need to also be configured in Steam after the first boot." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Games</Config>
+    <Config Name="User password" Target="USER_PASSWORD" Default="password" Mode="" Description="The password for this container.&#13;&#10;Note: This password will also be used for the root user. However, the default user has sudo access." Type="Variable" Display="always" Required="false" Mask="true">password</Config>
+    <Config Name="Timezone" Target="TZ" Default="Pacific/Auckland" Mode="" Description="Enter your local timezone.&#13;&#10;You can find a full list of supported timezones &#13;&#10;in: '/usr/share/zoneinfo' (eg: 'Etc/UTC' or 'Australia/Melbourne',...)" Type="Variable" Display="always" Required="false" Mask="false">Pacific/Auckland</Config>
+    <Config Name="Locales" Target="USER_LOCALES" Default="en_US.UTF-8 UTF-8" Mode="" Description="Enter your prefered locales.&#13;&#10;You can find a full list of supported languages &#13;&#10;in: '/usr/share/i18n/SUPPORTED' (eg: 'en_US.UTF-8 UTF8' or 'de_DE.UTF-8 UTF-8',...)" Type="Variable" Display="always" Required="false" Mask="false">en_US.UTF-8 UTF-8</Config>
+    <Config Name="Nvidia GPU UUID" Target="NVIDIA_VISIBLE_DEVICES" Default="all" Mode="" Description="For users with multiple GPUs, add the ID found under the " Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
+    <Config Name="Driver Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="all" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
+    <Config Name="Display ID" Target="DISPLAY" Default=":55" Mode="" Description="Set the X display. To use the host X server, set this to :0 (or whatever your host is currently running in /tmp/.X11-unix/X*)" Type="Variable" Display="advanced" Required="false" Mask="false">:55</Config>
+    <Config Name="Mode" Target="MODE" Default="secondary" Mode="" Description="Options: ['primary', 'framebuffer', 'secondary']." Type="Variable" Display="advanced" Required="false" Mask="false">secondary</Config>
+</Container>
