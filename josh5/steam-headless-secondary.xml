@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
     <Name>steam-headless-secondary</Name>
-    <Repository>josh5/steam-headless:develop</Repository>
+    <Repository>josh5/steam-headless:latest</Repository>
     <Registry>https://hub.docker.com/r/josh5/steam-headless</Registry>
     <Network>br0</Network>
     <MyIP>192.168.1.207</MyIP>
