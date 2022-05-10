@@ -77,7 +77,7 @@ Even though limiting RAM is unnecessary as Unmanic should not ever need more tha
         **Radeon-TOP plugin** (optional - required for AMD Support)
     </Requires>
     <Config Name="WebUI" Target="8888" Default="8888" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">8888</Config>
-    <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/unmanic" Mode="rw" Description="Location where all container configuration is stored." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/unmanic</Config>
+    <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/unmanic" Mode="rw" Description="Location where all container configuration is stored." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/unmanic</Config>
     <Config Name="Cache Directory" Target="/tmp/unmanic" Default="" Mode="rw" Description="Location where task files are temporarily stored while workers are carrying out jobs on them." Type="Path" Display="always" Required="true" Mask="false" />
     <Config Name="Library Movies" Target="/library/movies" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false" />
     <Config Name="Library TV" Target="/library/tv" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false" />
