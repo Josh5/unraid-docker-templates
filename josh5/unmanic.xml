@@ -61,6 +61,7 @@ Even though limiting RAM is unnecessary as Unmanic should not ever need more tha
 3) In the "Extra Parameters" field, add "--device=/dev/dri".
 
     </Overview>
+    <ExtraSearchTerms>process auto automate rename move transcode ffmpeg comskip comchap comcut video2x h265 h264 plex emby jellyfin sonarr radarr tdarr flow</ExtraSearchTerms>
     <Category>Productivity: MediaApp:Video MediaApp:Music MediaApp:Books MediaApp:Photos MediaApp:Other Status:Stable</Category>
     <WebUI>http://[IP]:[PORT:8888]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/unmanic.xml</TemplateURL>
