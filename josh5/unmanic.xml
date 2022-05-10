@@ -9,8 +9,8 @@
     <Support>https://forums.unraid.net/topic/76878-support-josh5-unmanic-library-optimiser/</Support>
     <Project>https://github.com/unmanic/unmanic</Project>
     <Overview>
-        [br]Unmanic is a simple tool for optimising your video library to a single format.
-        [br]Remove the complexity of automatically converting your media library.
+        [br]Unmanic is a simple tool for optimising your file library with a highly customisable plugin system.
+        [br]Remove the complexity of automatically converting your file library.
         [br]Simply point Unmanic at your library and let it manage it for you.
         [br]
         [br][b][u][span style='color: #E80000;']Advanced settings[/span][/u][/b]
@@ -40,7 +40,7 @@
         [br] Even though limiting RAM is unnecessary as Unmanic should not ever need more that 1GB RAM it is good practice to do so.
         [br]
     </Overview>
-    <Category>Productivity: MediaApp:Video Status:Stable</Category>
+    <Category>Productivity: MediaApp:Video MediaApp:Music MediaApp:Books MediaApp:Photos MediaApp:Other Status:Stable</Category>
     <WebUI>http://[IP]:[PORT:8888]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/unmanic.xml
     </TemplateURL>
@@ -50,9 +50,9 @@
     <CPUset/>
     <DonateText>Support me on Patreon</DonateText>
     <DonateLink>https://www.patreon.com/josh5</DonateLink>
-    <Description>Unmanic is a simple tool for optimising your file library to a single format.&#xD;
+    <Description>Unmanic is a simple tool for optimising your file library with a highly customisable plugin system.&#xD;
 &#xD;
-Remove the complexity of automatically converting your media library.&#xD;
+Remove the complexity of automatically converting your file library.&#xD;
 Simply point Unmanic at your library and let it manage it for you.&#xD;
 &#xD;
 </Description>
