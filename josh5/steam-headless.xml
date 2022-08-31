@@ -34,7 +34,7 @@ Everything that you wish to save in this container should be stored in the home 
 It is recommended that you mount your games library to `/mnt/games` and configure Steam to add that path.&#xD;
 &#xD;
 ### AUTO START APPLICATIONS:&#xD;
-In this container, Steam is configured to automatically start. If you wish to add additional services to automatically start, add them under **Applications &amp;gt; Settings &amp;gt; Session and Startup** in the WebUI.&#xD;
+In this container, Steam is configured to automatically start. If you wish to add additional services to automatically start, add them under **Applications &amp;gt; Settings &amp;gt; Session and Startup** in the Web UI.&#xD;
 &#xD;
 ### NETWORK MODE:&#xD;
 If you want to use the container as a Steam Remote Play (previously "In Home Streaming") host device you should set the **"Network Type:"** to *"Host"*. This is a requirement for controller hardware to work and to prevent traffic being routed through the internet since Steam thinks you are on a different network.&#xD;
@@ -60,10 +60,10 @@ If your host is already running X, you can just use that. To do this, be sure to
     <WebUI>http://[IP]:[PORT:8083]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
-    <ExtraParams>--hostname='SteamHeadless' --add-host='SteamHeadless:127.0.0.1' --restart=unless-stopped --shm-size=2G --ipc="host" -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/dev/input':'/dev/input':'ro'</ExtraParams>
+    <ExtraParams>--hostname='SteamHeadless' --add-host='SteamHeadless:127.0.0.1' --restart=unless-stopped --shm-size=2G --ipc="host" -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/dev/input':'/dev/input':'ro' --ulimit nofile=1024:524288</ExtraParams>
     <PostArgs />
     <CPUset />
-    <DateInstalled>1641819645</DateInstalled>
+    <DateInstalled>1661920657</DateInstalled>
     <DonateText>Support me on Patreon</DonateText>
     <DonateLink>https://www.patreon.com/josh5</DonateLink>
     <Requires>&#xD;
