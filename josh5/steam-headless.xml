@@ -56,7 +56,7 @@ If your host is already running X, you can just use that. To do this, be sure to
   - /run/dbus:/run/dbus:ro    &#xD;
     **(Mount)**  - *Optional - Configures the container to use the host dbus process*&#xD;
 </Overview>
-    <Category>GameServers: Status:Stable</Category>
+    <Category>GameServers:</Category>
     <WebUI>http://[IP]:[PORT:8083]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
