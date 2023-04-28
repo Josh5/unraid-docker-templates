@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>tvh-iptv</Name>
+  <Repository>josh5/tvh-iptv:latest</Repository>
+  <Registry>https://hub.docker.com/u/josh5/TVH-IPTV-Config</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://unmanic.app/discord</Support>
+  <Project>https://github.com/Josh5/TVH-IPTV-Config</Project>
+  <Overview>AIO container providing a simple IPTV config frontend for Tvheadend.&#xD;
+&#xD;
+Tvheadend(https://www.tvheadend.org/), AKA "TVH", is a TV streaming server and recorder supporting, among other things, IPTV input sources. &#xD;
+Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT&amp;gt;IP streaming and there are a bunch of clients out there to use as clients for watching.&#xD;
+&#xD;
+The catch is that on its own, Tvheadend can be complicated to setup for IPTV. Once you read through all the documentation and forum posts on how to do it, it works well. But that is a steep learning curve. In addition to this, if you were to just throw a IPTV playlist of thousands of channels at the thing, well... good luck with that mess. To get it working really well, there is a lot of mouse clicking here and there and perhaps the odd ffmpeg pipe to configure on each MUX and... who as time for that!&#xD;
+&#xD;
+TVH-IPTV-Config (TIC) should make life easy(ish) when setting up IPTV on Tvheadend.&#xD;
+Features:&#xD;
+- Easily import/configure channels from playlists. Assign logos, EPG, and multiple stream sources per channel.&#xD;
+- Automatically generate IPTV networks in TVH per playlist configured with a number of connections allowed.&#xD;
+- Automatically manage a custom EPG based on channel selection.&#xD;
+- Automatically create muxes in TVH for each stream asssociated with a configured channel. Configure muxes with FFmpeg pipes to improve compatibility and provide a local buffer.&#xD;
+- Automatically map mux services to channels in TVH.&#xD;
+- Automaticlaly configure optimal recording settings.&#xD;
+- + Much more little tweaks behind the scenes...
+
+---
+## Advanced Configuration:
+
+### LIMIT CPU USE:
+1) Toggle this Docker Container template editor to "Advanced View".
+2) In the "Extra Parameters" field, add "--cpus='1'".
+This value depends on the number of cores available to the container. To limit to 50%, set this value to 0.5 * n cores. If you have 2 cores available to this container, "--cpus='.5'" will equal 25% of that available CPU resources. To limit the CPU cores available to the continer, use "CPU Pinning"
+
+### LIMIT RAM ALLOCATION:
+1) Toggle this Docker Container template editor to "Advanced View".
+2) In the "Extra Parameters" field, add "--memory='1g'".
+Tvheadend and TIC can use on average around 100Mib - 500 Mib of RAM for various tasks.
+Even though limiting RAM is unnecessary as this container should not ever need more that 1GB RAM it is good practice to do so.
+</Overview>
+  <ExtraSearchTerms>tvheadend iptv dvr pvr xtream codes m3u8 ffmpeg comskip comchap comcut transcode h265 h264 kodi plex emby jellyfin</ExtraSearchTerms>
+  <Category>MediaServer:Video</Category>
+  <WebUI>http://[IP]:[PORT:9985]/</WebUI>
+  <TemplateURL/>
+  <Icon>https://github.com/Josh5/TVH-IPTV-Config/raw/master/frontend/public/icons/TVH-IPTV-Config-Logo.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>Support me on Patreon</DonateText>
+  <DonateLink>https://www.patreon.com/josh5</DonateLink>
+  <Requires/>
+  <Config Name="WebUI Port (9985)" Target="9985" Default="9985" Mode="tcp" Description="WebUI Port" Type="Port" Display="always" Required="true" Mask="false">9985</Config>
+  <Config Name="TVH WebUI Port (9981)" Target="9981" Default="9981" Mode="tcp" Description="TVH WebUI Port" Type="Port" Display="always" Required="true" Mask="false">9981</Config>
+  <Config Name="TVH HTSP Port (9982)" Target="9982" Default="9982" Mode="tcp" Description="HTSP server port." Type="Port" Display="always" Required="true" Mask="false">9982</Config>
+  <Config Name="Recordings Path (/recordings)" Target="/recordings" Default="" Mode="rw" Description="Where you want the PVR to store recordings." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/TVShows/Recordings/</Config>
+  <Config Name="TimeShift Path (/timeshift)" Target="/timeshift" Default="" Mode="rw" Description="Path for transcoding folder (Optional)" Type="Path" Display="always" Required="false" Mask="false">/mnt/cache/transcodercache/tvh-iptv/timeshift</Config>
+  <Config Name="Tvheadend RUN_OPTS" Target="RUN_OPTS" Default="" Mode="{3}" Description="Optionally specify additional arguments to be passed to Tvheadend. See Additional runtime parameters." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/tvh-iptv" Mode="rw" Description="Where TVH-IPTV stores it's config files." Type="Path" Display="advanced" Required="true" Mask="false">/mnt/user/appdata/tvh-iptv</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="{3}" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="{3}" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="022" Mode="{3}" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">022</Config>
+  <Config Name="TZ" Target="TZ" Default="Pacific/Auckland" Mode="{3}" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">Pacific/Auckland</Config>
+  <Config Name="Custom Scripts" Target="/custom-cont-init.d/" Default="" Mode="rw" Description="" Type="Path" Display="advanced" Required="true" Mask="false">/mnt/user/appdata/tvh-iptv/startup-scripts/</Config>
+</Container>
