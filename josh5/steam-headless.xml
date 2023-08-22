@@ -12,9 +12,12 @@
     <GitHub>https://github.com/Steam-Headless/docker-steam-headless/blob/master/README.md</GitHub>
     <ReadMe>https://github.com/Steam-Headless/docker-steam-headless/blob/master/docs/unraid.md</ReadMe>
     <Overview>Headless Steam Service&#xD;
-Play your games in the browser with audio. Connect another device and use it with Steam Remote Play. &#xD;
+Remote Game Streaming Server. Play your games either in the browser with audio or via Steam Link or Moonlight. Play from another Steam Client with Steam Remote Play. &#xD;
 &#xD;
 ## Features:&#xD;
+- Steam Client configured for running on Linux with Proton&#xD;
+- Moonlight compatible server for easy remote desktop streaming&#xD;
+- One click installation of EmeDeck, Heroic and Lutris&#xD;
 - Full video/audio noVNC web access to a Xfce4 Desktop&#xD;
 - NVIDIA, AMD and Intel GPU support&#xD;
 - Full controller support&#xD;

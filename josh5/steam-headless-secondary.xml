@@ -6,9 +6,11 @@
     <Network>br0</Network>
     <MyIP>192.168.1.207</MyIP>
     <Shell>bash</Shell>
-    <Privileged>true</Privileged>
-    <Support>https://forums.unraid.net/topic/118390-support-josh5-steam-headless/</Support>
-    <Project>https://store.steampowered.com/</Project>
+    <Privileged>false</Privileged>
+    <Project>https://github.com/Steam-Headless/</Project>
+    <Support>https://github.com/Steam-Headless/docker-steam-headless/issues/new/choose/</Support>
+    <GitHub>https://github.com/Steam-Headless/docker-steam-headless/blob/master/README.md</GitHub>
+    <ReadMe>https://github.com/Steam-Headless/docker-steam-headless/blob/master/docs/unraid.md</ReadMe>
     <Overview>Headless Steam Service (Secondary)&#xD;
 This container relies on an existing working SteamHeadless running.&#xD;
 &#xD;
@@ -30,19 +32,27 @@ Only one instance of Steam Headless can play a game at any time. If you start a 
 Everything that you wish to save in this container should be stored in the home directory or a docker container mount that you have specified. All files that are store outside your home directory are not persistent and will be wiped if there is an update of the container or you change something in the template.&#xD;
 &#xD;
 ### GAMES LIBRARY:&#xD;
-It is recommended that you mount your games library to `/mnt/games` and configure Steam to add that path.&#xD;
+It is recommended that you mount your games library to `/mnt/games/GameLibrary/SteamLibrary` and configure Steam to add that path.&#xD;
 &#xD;
 ### NVIDIA GPU:&#xD;
-To enable NVIDIA GPU support, ensure that you have the *"--runtime=nvidia"* parameter added to **"Extra Parameters:"**&#xD;
+To enable NVIDIA GPU support, ensure that you have installed the **Nvidia-Driver** plugin and add the *"--runtime='nvidia'"* parameter added to **"Extra Parameters:"**&#xD;
+&#xD;
+### AMD GPU:&#xD;
+To enable AMD GPU support, ensure that you have installed the **Radeon-TOP** plugin.&#xD;
+&#xD;
+### AMD OR INTEL HW ACCELERATED VIDEO ENCODING:&#xD;
+To enable support for VAAPI HW Accelerated Video Encoding, add the *"--device='/dev/dri'"* parameter added to **"Extra Parameters:"**&#xD;
+&#xD;
 </Overview>
-    <Category>GameServers: Status:Stable</Category>
+    <ExtraSearchTerms>NVIDIA AMD SteamOS SteamDeck Steam Deck EPIC Games UPlay EA Emulation Yuzu Citra Stream Play Moonlight Sunshine X11 Xorg</ExtraSearchTerms>
+    <Category>GameServers:</Category>
     <WebUI />
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless-secondary.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
-    <ExtraParams>--hostname='SteamHeadlessSecondary' --add-host='SteamHeadlessSecondary:127.0.0.1' --restart=unless-stopped --shm-size=2G -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/dev/input':'/dev/input':'ro'</ExtraParams>
+    <ExtraParams>--hostname='SteamHeadlessSecondary' --add-host='SteamHeadlessSecondary:127.0.0.1' --restart='unless-stopped' --shm-size='2G' -v '/tmp/.X11-unix/':'/tmp/.X11-unix/':'rw' -v '/tmp/tmp/pulse/':'/tmp/tmp/pulse/':'rw' -v '/dev/input/':'/dev/input/':'ro' -v '/run/udev/data/':'/run/udev/data/':'ro' --ulimit='nofile=1024:524288' --device='/dev/fuse' --device='/dev/uinput' --device-cgroup-rule='c 13:* rmw' --cap-add='NET_ADMIN' --cap-add='SYS_ADMIN' --cap-add='SYS_NICE' --security-opt='seccomp=unconfined'</ExtraParams>
     <PostArgs />
     <CPUset />
-    <DateInstalled>1644298827</DateInstalled>
+    <DateInstalled />
     <DonateText>Support me on Patreon</DonateText>
     <DonateLink>https://www.patreon.com/josh5</DonateLink>
     <Requires>**Steam Headless**</Requires>
