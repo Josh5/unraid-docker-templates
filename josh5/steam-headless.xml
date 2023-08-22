@@ -3,22 +3,24 @@
     <Name>steam-headless</Name>
     <Repository>josh5/steam-headless:latest</Repository>
     <Registry>https://hub.docker.com/r/josh5/steam-headless</Registry>
-    <Network>host</Network>
+    <Network>br0</Network>
     <MyIP />
     <Shell>bash</Shell>
-    <Privileged>true</Privileged>
-    <Support>https://forums.unraid.net/topic/118390-support-josh5-steam-headless/</Support>
-    <Project>https://store.steampowered.com/</Project>
+    <Privileged>false</Privileged>
+    <Project>https://github.com/Steam-Headless/</Project>
+    <Support>https://github.com/Steam-Headless/docker-steam-headless/issues/new/choose/</Support>
+    <GitHub>https://github.com/Steam-Headless/docker-steam-headless/blob/master/README.md</GitHub>
+    <ReadMe>https://github.com/Steam-Headless/docker-steam-headless/blob/master/docs/unraid.md</ReadMe>
     <Overview>Headless Steam Service&#xD;
 Play your games in the browser with audio. Connect another device and use it with Steam Remote Play. &#xD;
 &#xD;
 ## Features:&#xD;
 - Full video/audio noVNC web access to a Xfce4 Desktop&#xD;
-- NVIDIA GPU support&#xD;
-- AMD GPU support&#xD;
-- Full controller support (requires ich777's uinput plugin installed)&#xD;
+- NVIDIA, AMD and Intel GPU support&#xD;
+- Full controller support&#xD;
+- Support for Flatpak and Appimage installation&#xD;
 - Root access&#xD;
-- Based on Debain Bullseye&#xD;
+- Based on Debian Bookworm&#xD;
 &#xD;
 ---&#xD;
 ## Notes:&#xD;
@@ -31,7 +33,7 @@ script inside the `~/init.d` directory ending with ".sh". This will be executed 
 Everything that you wish to save in this container should be stored in the home directory or a docker container mount that you have specified. All files that are store outside your home directory are not persistent and will be wiped if there is an update of the container or you change something in the template.&#xD;
 &#xD;
 ### GAMES LIBRARY:&#xD;
-It is recommended that you mount your games library to `/mnt/games` and configure Steam to add that path.&#xD;
+It is recommended that you mount your games library to `/mnt/games/GameLibrary/SteamLibrary` and configure Steam to add that path.&#xD;
 &#xD;
 ### AUTO START APPLICATIONS:&#xD;
 In this container, Steam is configured to automatically start. If you wish to add additional services to automatically start, add them under **Applications &amp;gt; Settings &amp;gt; Session and Startup** in the Web UI.&#xD;
@@ -40,10 +42,17 @@ In this container, Steam is configured to automatically start. If you wish to ad
 If you want to use the container as a Steam Remote Play (previously "In Home Streaming") host device you should set the **"Network Type:"** to *"Host"*. This is a requirement for controller hardware to work and to prevent traffic being routed through the internet since Steam thinks you are on a different network.&#xD;
 &#xD;
 ### NVIDIA GPU:&#xD;
-To enable NVIDIA GPU support, ensure that you have installed the **Nvidia-Driver** plugin and add the *"--runtime=nvidia"* parameter added to **"Extra Parameters:"**&#xD;
+To enable NVIDIA GPU support, ensure that you have installed the **Nvidia-Driver** plugin and add the *"--runtime='nvidia'"* parameter added to **"Extra Parameters:"**&#xD;
 &#xD;
 ### AMD GPU:&#xD;
 To enable AMD GPU support, ensure that you have installed the **Radeon-TOP** plugin.&#xD;
+&#xD;
+### AMD OR INTEL HW ACCELERATED VIDEO ENCODING:&#xD;
+To enable support for VAAPI HW Accelerated Video Encoding, add the *"--device='/dev/dri'"* parameter added to **"Extra Parameters:"**&#xD;
+&#xD;
+### USING HOST INPUT DEVICES:&#xD;
+If you wish to connect a keyboard/mouse to this container, you should run it with the **"Privileged:"** flag "On". &#xD;
+Likewise if you have issues with remote controllers, try toggling this on.&#xD;
 &#xD;
 ### USING HOST X SERVER:&#xD;
 If your host is already running X, you can just use that. To do this, be sure to configure:&#xD;
@@ -56,14 +65,15 @@ If your host is already running X, you can just use that. To do this, be sure to
   - /run/dbus:/run/dbus:ro    &#xD;
     **(Mount)**  - *Optional - Configures the container to use the host dbus process*&#xD;
 </Overview>
+    <ExtraSearchTerms>NVIDIA AMD SteamOS SteamDeck Steam Deck EPIC Games UPlay EA Emulation Yuzu Citra Stream Play Moonlight Sunshine X11 Xorg</ExtraSearchTerms>
     <Category>GameServers:</Category>
     <WebUI>http://[IP]:[PORT:8083]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
-    <ExtraParams>--hostname='SteamHeadless' --add-host='SteamHeadless:127.0.0.1' --restart=unless-stopped --shm-size=2G --ipc="host" -v '/tmp/.X11-unix':'/tmp/.X11-unix':'rw' -v '/tmp/tmp/pulse':'/tmp/tmp/pulse':'rw' -v '/dev/input':'/dev/input':'ro' --ulimit nofile=1024:524288</ExtraParams>
+    <ExtraParams>--hostname='SteamHeadless' --add-host='SteamHeadless:127.0.0.1' --restart='unless-stopped' --shm-size='2G' --ipc='host' -v '/tmp/.X11-unix/':'/tmp/.X11-unix/':'rw' -v '/tmp/tmp/pulse/':'/tmp/tmp/pulse/':'rw' -v '/dev/input/':'/dev/input/':'ro' -v '/run/udev/data/':'/run/udev/data/':'ro' -v 'steam-headless-var-lib-flatpak':'/var/lib/flatpak/':'rw' --ulimit='nofile=1024:524288' --device='/dev/fuse' --device='/dev/uinput' --device-cgroup-rule='c 13:* rmw' --cap-add='NET_ADMIN' --cap-add='SYS_ADMIN' --cap-add='SYS_NICE' --security-opt='seccomp=unconfined'</ExtraParams>
     <PostArgs />
     <CPUset />
-    <DateInstalled>1665068693</DateInstalled>
+    <DateInstalled />
     <DonateText>Support me on Patreon</DonateText>
     <DonateLink>https://www.patreon.com/josh5</DonateLink>
     <Requires>&#xD;
