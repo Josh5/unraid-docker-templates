@@ -9,26 +9,49 @@
   <Privileged>false</Privileged>
   <Support>https://support-api.streamingtech.co.nz/discord</Support>
   <Project>https://github.com/Josh5/TVH-IPTV-Config</Project>
-  <Overview>TVH-IPTV-Config (TIC) provides a simple IPTV config frontend for Tvheadend.&#xD;
+  <Overview>TVH-IPTV-Config - A simple IPTV config frontend for playlist filtering providing a M3U8 proxy for Plex, Emby, Jellyfin and (of course) Tvheadend.&#xD;
+&#xD;
+TVH-IPTV-Config (TIC) attempts to provide a simple IPTV config frontend for a Tvheadend (TVH) backend. In addition to this, it provides HDHomeRun tuner emulation, an HLS playlist proxy/caching and custom channel mapping from multipl playlist sources.&#xD;
+&#xD;
+Note: This template is a stand-alone installation of TIC and requires that you, the user, also install and maintain a seperate Tvheadend container. Currently, only TVH v4.3+ is tested and supported, though 4.2.8 may work fine. You will need to ensure you have the 'XMLTV URL grabber' module installed with your TVH server.&#xD;
+If you want to run TIC without managing your own TVH backend, then you should look at using the "tvh-iptv" template which provides an AIO docker container solution.
+&#xD;
+&#xD;
+---------------------------------------------------------------------------------------------------------------------
+&#xD;
+## Features:&#xD;
+- Easily import/configure channels from playlists.&#xD;
+    - Assign and locally cache logos per channel.&#xD;
+    - Assign EPG sources for each channel.&#xD;
+    - Configure channel numbers and ordering for channels.&#xD;
+    - Configure multiple stream sources per channel.&#xD;
+    - Manage and search through playlists that contain tens of thousands of streams without crashing the UI.
+- Provide an ffmpeg buffer for your streams so multiple devices playing back the same stream will only use one playlist connection.&#xD;
+- Serve an HDHomeRun emulator for each playlist so Plex, Emby, and Jellyfin can connect to it an saturate the number of configured connections per playlist.&#xD;
+- Automatically fetch missing metada for your EPG programme schedule like icons, description, etc.&#xD;
+- Configure and automatically actively maintain a Tvheadend backend for IPTV without the fuss.
+    - Automatically generate IPTV networks in TVH per playlist configured with a number of connections allowed.&#xD;
+    - Automatically manage a custom EPG based on channel selection.&#xD;
+    - Automatically create muxes in TVH for each stream asssociated with a configured channel. Configure muxes with FFmpeg pipes to improve compatibility and provide a local buffer.&#xD;
+    - Automatically map mux services to channels in TVH.&#xD;
+    - Automaticlaly configure optimal streaming and timeseries settings.&#xD;
+    - Automaticlaly configure optimal recording settings.&#xD;
+    - + Much more little tweaks behind the scenes...&#xD;
+&#xD;
+---------------------------------------------------------------------------------------------------------------------
+&#xD;
+## How it works:&#xD;
 &#xD;
 Tvheadend(https://www.tvheadend.org/), AKA "TVH", is a TV streaming server and recorder supporting, among other things, IPTV input sources. &#xD;
-Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT&amp;gt;IP streaming and there are a bunch of clients out there to use as clients for watching.&#xD;
+Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT>IP streaming and there are a bunch of clients out there to use as clients for watching.&#xD;
 &#xD;
 The catch is that on its own, Tvheadend can be complicated to setup for IPTV. Once you read through all the documentation and forum posts on how to do it, it works well. But that is a steep learning curve. In addition to this, if you were to just throw a IPTV playlist of thousands of channels at the thing, well... good luck with that mess. To get it working really well, there is a lot of mouse clicking here and there and perhaps the odd ffmpeg pipe to configure on each MUX and... who as time for that!&#xD;
 &#xD;
 TIC should make life easy(ish) when setting up IPTV on Tvheadend.&#xD;
-Features:&#xD;
-- Easily import/configure channels from playlists. Assign logos, EPG, and multiple stream sources per channel.&#xD;
-- Automatically generate IPTV networks in TVH per playlist configured with a number of connections allowed.&#xD;
-- Automatically manage a custom EPG based on channel selection.&#xD;
-- Automatically create muxes in TVH for each stream asssociated with a configured channel. Configure muxes with FFmpeg pipes to improve compatibility and provide a local buffer.&#xD;
-- Automatically map mux services to channels in TVH.&#xD;
-- Automaticlaly configure optimal recording settings.&#xD;
-- + Much more little tweaks behind the scenes...&#xD;
 &#xD;
-Note: This container requires that you, the user, also install and maintain a seperate Tvheadend container.&#xD;
 &#xD;
----&#xD;
+---------------------------------------------------------------------------------------------------------------------
+&#xD;
 ## Advanced Configuration:&#xD;
 &#xD;
 ### LIMIT CPU USE:&#xD;
@@ -42,7 +65,7 @@ This value depends on the number of cores available to the container. To limit t
 Tvheadend and TIC can use on average around 100Mib - 500 Mib of RAM for various tasks.&#xD;
 Even though limiting RAM is unnecessary as this container should not ever need more that 1GB RAM it is good practice to do so.&#xD;
 </Overview>
-  <ExtraSearchTerms>tvheadend iptv dvr pvr xtream codes m3u8 ffmpeg comskip comchap comcut transcode h265 h264 kodi plex emby jellyfin</ExtraSearchTerms>
+  <ExtraSearchTerms>tvheadend iptv dvr pvr xtream codes m3u m3u8 hls ffmpeg comskip comchap comcut transcode h265 h264 kodi plex emby jellyfin hdhomerun xteve threadfin</ExtraSearchTerms>
   <Category>MediaServer:Video</Category>
   <WebUI>http://[IP]:[PORT:9985]/</WebUI>
   <TemplateURL/>
