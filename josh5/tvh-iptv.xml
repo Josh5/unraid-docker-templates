@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>tvh-iptv-config</Name>
-  <Repository>josh5/tvh-iptv-config:latest</Repository>
+  <Name>tvh-iptv</Name>
+  <Repository>josh5/tvh-iptv:latest</Repository>
   <Registry>https://hub.docker.com/u/josh5/TVH-IPTV-Config</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -12,9 +12,6 @@
   <Overview>TVH-IPTV-Config - A simple IPTV config frontend for playlist filtering providing a M3U proxy for Plex, Emby, Jellyfin and (of course) Tvheadend.&#xD;
 &#xD;
 TVH-IPTV-Config (TIC) attempts to provide a simple IPTV config frontend for a Tvheadend (TVH) backend. In addition to this, it provides HDHomeRun tuner emulation, an HLS playlist proxy/caching and custom channel mapping from multipl playlist sources.&#xD;
-&#xD;
-Note: This template is a stand-alone installation of TIC and requires that you, the user, also install and maintain a seperate Tvheadend container. Currently, only TVH v4.3+ is tested and supported, though 4.2.8 may work fine. You will need to ensure you have the 'XMLTV URL grabber' module installed with your TVH server.&#xD;
-If you want to run TIC without managing your own TVH backend, then you should look at using the "tvh-iptv" template which provides an AIO docker container solution.
 &#xD;
 &#xD;
 ---------------------------------------------------------------------------------------------------------------------
@@ -79,7 +76,9 @@ Even though limiting RAM is unnecessary as this container should not ever need m
   <Requires/>
   <Config Name="WebUI Port" Target="9985" Default="9985" Mode="tcp" Description="WebUI Port" Type="Port" Display="always" Required="true" Mask="false">9985</Config>
   <Config Name="HLS Proxy Port" Target="9987" Default="9987" Mode="tcp" Description="HLS Proxy Port" Type="Port" Display="always" Required="false" Mask="false">9987</Config>
-  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/tvh-iptv-config" Mode="rw" Description="Where TVH-IPTV stores it's config files." Type="Path" Display="advanced" Required="true" Mask="false">/mnt/user/appdata/tvh-iptv-config</Config>
+  <Config Name="Tvheadend WebUI Port" Target="9981" Default="9981" Mode="tcp" Description="Tvheadend WebUI Port" Type="Port" Display="always" Required="true" Mask="false">9981</Config>
+  <Config Name="Tvheadend HTSP Port" Target="9982" Default="9982" Mode="tcp" Description="Tvheadend HTSP Port" Type="Port" Display="always" Required="true" Mask="false">9982</Config>
+  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/tvh-iptv" Mode="rw" Description="Where TVH-IPTV stores it's config files." Type="Path" Display="advanced" Required="true" Mask="false">/mnt/user/appdata/tvh-iptv</Config>
   <Config Name="PUID" Target="PUID" Default="99" Mode="{3}" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
   <Config Name="PGID" Target="PGID" Default="100" Mode="{3}" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
   <Config Name="UMASK" Target="UMASK" Default="022" Mode="{3}" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">022</Config>
