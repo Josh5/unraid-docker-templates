@@ -13,6 +13,8 @@
 &#xD;
 TVH-IPTV-Config (TIC) attempts to provide a simple IPTV config frontend for a Tvheadend (TVH) backend. In addition to this, it provides HDHomeRun tuner emulation, an HLS playlist proxy/caching and custom channel mapping from multipl playlist sources.&#xD;
 &#xD;
+Setup Guides: https://www.youtube.com/watch?v=-K28bJJ-iOY&list=PLm8TCnwR5C7uaZd2YHz0_vVivch62s_eG
+&#xD;
 &#xD;
 ---------------------------------------------------------------------------------------------------------------------
 &#xD;
