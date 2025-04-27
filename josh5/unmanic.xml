@@ -7,7 +7,7 @@
     <MyIP />
     <Shell>bash</Shell>
     <Privileged>false</Privileged>
-    <Support>https://forums.unraid.net/topic/76878-support-josh5-unmanic-library-optimiser/</Support>
+    <Support>https://streamingtech.co.nz/discord</Support>
     <Project>https://github.com/Unmanic/unmanic</Project>
     <Overview>
 Unmanic is a simple tool for optimising your file library with a highly customisable plugin system.
@@ -86,5 +86,5 @@ Even though limiting RAM is unnecessary as Unmanic should not ever need more tha
     <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
     <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
     <Config Name="Nvidia GPU UUID" Target="NVIDIA_VISIBLE_DEVICES" Default="all" Mode="" Description="The UUID of the NVIDIA GPU that you wish to use within this container. Set to 'all' to use all available NVIDIA GPUs." Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
-    <Config Name="Nvidia GPU Patch Version" Target="NVIDIA_PATCH_VERSION" Default="" Mode="" Description="For description, join the conversation at https://unmanic.app/discord" Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+    <Config Name="Nvidia GPU Patch Version" Target="NVIDIA_PATCH_VERSION" Default="" Mode="" Description="For description, join the conversation at https://streamingtech.co.nz/discord" Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 </Container>

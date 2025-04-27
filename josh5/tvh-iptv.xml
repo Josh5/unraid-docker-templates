@@ -7,7 +7,7 @@
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://support-api.streamingtech.co.nz/discord</Support>
+  <Support>https://streamingtech.co.nz/discord</Support>
   <Project>https://github.com/Josh5/TVH-IPTV-Config</Project>
   <Overview>TVH-IPTV-Config - A simple IPTV config frontend for playlist filtering providing a M3U proxy for Plex, Emby, Jellyfin and (of course) Tvheadend.&#xD;
 &#xD;
