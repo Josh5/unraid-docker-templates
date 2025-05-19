@@ -73,7 +73,7 @@ If your host is already running X, you can just use that. To do this, be sure to
     <WebUI>http://[IP]:[PORT:8083]/</WebUI>
     <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/steam-headless.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/Josh5/docker-steam-headless/master/images/steam-icon.png</Icon>
-    <ExtraParams>--hostname='SteamHeadless' --add-host='SteamHeadless:127.0.0.1' --restart='unless-stopped' --shm-size='2G' --ipc='host' -v '/tmp/.X11-unix/':'/tmp/.X11-unix/':'rw' -v '/tmp/tmp/pulse/':'/tmp/tmp/pulse/':'rw' --ulimit='nofile=1024:524288' --device='/dev/fuse' --device='/dev/uinput' --device-cgroup-rule='c 13:* rmw' --cap-add='NET_ADMIN' --cap-add='SYS_ADMIN' --cap-add='SYS_NICE' --security-opt='seccomp=unconfined'</ExtraParams>
+    <ExtraParams>--hostname='SteamHeadless' --add-host='SteamHeadless:127.0.0.1' --restart='unless-stopped' --shm-size='2G' --ipc='host' -v '/tmp/.X11-unix/':'/tmp/.X11-unix/':'rw' -v '/tmp/pulse/':'/tmp/pulse/':'rw' --ulimit='nofile=1024:524288' --device='/dev/fuse' --device='/dev/uinput' --device-cgroup-rule='c 13:* rmw' --cap-add='NET_ADMIN' --cap-add='SYS_ADMIN' --cap-add='SYS_NICE' --security-opt='seccomp=unconfined'</ExtraParams>
     <PostArgs />
     <CPUset />
     <DateInstalled />
