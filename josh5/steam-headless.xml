@@ -17,7 +17,7 @@ Remote Game Streaming Server. Play your games either in the browser with audio o
 ## Features:&#xD;
 - Steam Client configured for running on Linux with Proton&#xD;
 - Moonlight compatible server for easy remote desktop streaming&#xD;
-- One click installation of EmeDeck, Heroic and Lutris&#xD;
+- Easily install additional launchers like EmulationStation, Heroic and Lutris&#xD;
 - Full video/audio noVNC web access to a Xfce4 Desktop&#xD;
 - NVIDIA, AMD and Intel GPU support&#xD;
 - Full controller support&#xD;
