@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Container version="2">
+    <Name>Unmanic Central Datastore</Name>
+    <Repository>ghcr.io/unmanic/unmanic-central-datastore:latest</Repository>
+    <Registry>https://ghcr.io/unmanic/unmanic-central-datastore</Registry>
+    <Network>bridge</Network>
+    <MyIP />
+    <Shell>bash</Shell>
+    <Privileged>false</Privileged>
+    <Support>https://streamingtech.co.nz/discord</Support>
+    <Project>https://github.com/Unmanic/</Project>
+    <Overview>
+Unmanic Central Datastore is the backend component for collecting, storing, and serving logs and metrics from Unmanic installations.
+    </Overview>
+    <Category>Productivity: MediaApp:Video MediaApp:Music MediaApp:Books MediaApp:Photos MediaApp:Other Status:Stable</Category>
+    <WebUI>http://[IP]:[PORT:8889]/unmanic</WebUI>
+    <TemplateURL>https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/unmanic-central-datastore.xml</TemplateURL>
+    <Icon>https://raw.githubusercontent.com/Unmanic/unmanic-central-datastore/refs/heads/master/icon.png</Icon>
+    <ExtraParams>--user=99:100</ExtraParams>
+    <PostArgs />
+    <CPUset/>
+    <DonateText>Support me on Patreon</DonateText>
+    <DonateLink>https://www.patreon.com/josh5</DonateLink>
+    <Requires>&#xD;
+        **PostgreSQL container required** (same Docker network)&#xD;
+        **Container name/alias:** postgres&#xD;
+        **Supported version:** PostgreSQL 17 only&#xD;
+        **Recommendation:** lock Docker image tag to postgres:17-bookworm&#xD;
+    </Requires>
+    <Config Name="WebUI" Target="8889" Default="8889" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">8889</Config>
+    <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/unmanic-central-datastore" Mode="rw" Description="Location where all container configuration is stored." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/unmanic-central-datastore</Config>
+    <Config Name="Datastore Password" Target="UNMANIC_CENTRAL_DATASTORE_PASSWORD" Default="" Mode="" Description="Basic auth password (username is 'unmanic')." Type="Variable" Display="always" Required="true" Mask="true" />
+    <Config Name="Postgres Username" Target="UNMANIC_CENTRAL_POSTGRES_USERNAME" Default="postgres" Mode="" Description="Postgres username. PostgreSQL 17 is required." Type="Variable" Display="always" Required="true" Mask="false">postgres</Config>
+    <Config Name="Postgres Password" Target="UNMANIC_CENTRAL_POSTGRES_PASSWORD" Default="" Mode="" Description="Postgres password. PostgreSQL 17 is required." Type="Variable" Display="always" Required="true" Mask="true" />
+    <Config Name="Datastore Name" Target="UNMANIC_CENTRAL_NAME" Default="Unmanic Central DB" Mode="" Description="Friendly name for this datastore." Type="Variable" Display="advanced" Required="false" Mask="false">Unmanic Central DB</Config>
+    <Config Name="Path Prefix" Target="UNMANIC_CENTRAL_PATH_PREFIX" Default="/unmanic" Mode="" Description="Path prefix for accessing the datastore URL." Type="Variable" Display="advanced" Required="false" Mask="false">/unmanic</Config>
+</Container>
