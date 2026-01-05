@@ -32,6 +32,8 @@ Unmanic Central Datastore is the backend component for collecting, storing, and 
     <Config Name="Datastore Password" Target="UNMANIC_CENTRAL_DATASTORE_PASSWORD" Default="" Mode="" Description="Basic auth password (username is 'unmanic')." Type="Variable" Display="always" Required="true" Mask="true" />
     <Config Name="Postgres Username" Target="UNMANIC_CENTRAL_POSTGRES_USERNAME" Default="postgres" Mode="" Description="Postgres username. PostgreSQL 17 is required." Type="Variable" Display="always" Required="true" Mask="false">postgres</Config>
     <Config Name="Postgres Password" Target="UNMANIC_CENTRAL_POSTGRES_PASSWORD" Default="" Mode="" Description="Postgres password. PostgreSQL 17 is required." Type="Variable" Display="always" Required="true" Mask="true" />
+    <Config Name="Postgres Host" Target="UNMANIC_CENTRAL_POSTGRES_HOST" Default="postgres" Mode="" Description="Postgres host or container name." Type="Variable" Display="always" Required="true" Mask="false">postgres / 192.168.1.2</Config>
+    <Config Name="Postgres Database" Target="UNMANIC_CENTRAL_POSTGRES_DB" Default="unmanic" Mode="" Description="Postgres database name." Type="Variable" Display="always" Required="true" Mask="false">unmanic</Config>
     <Config Name="Datastore Name" Target="UNMANIC_CENTRAL_NAME" Default="Unmanic Central DB" Mode="" Description="Friendly name for this datastore." Type="Variable" Display="advanced" Required="false" Mask="false">Unmanic Central DB</Config>
     <Config Name="Path Prefix" Target="UNMANIC_CENTRAL_PATH_PREFIX" Default="/unmanic" Mode="" Description="Path prefix for accessing the datastore URL." Type="Variable" Display="advanced" Required="false" Mask="false">/unmanic</Config>
 </Container>
