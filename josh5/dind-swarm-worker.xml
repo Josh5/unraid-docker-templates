@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<Container version="2">
+    <Name>dind-swarm-worker</Name>
+    <Repository>ghcr.io/josh5/ubuntu-dind:latest</Repository>
+    <Registry>https://registry.hub.docker.com/_/docker</Registry>
+    <Network>eth0</Network>
+    <MyIP>192.168.1.202</MyIP>
+    <Shell>bash</Shell>
+    <Privileged>true</Privileged>
+    <Support />
+    <Project>https://docs.docker.com/engine/swarm/</Project>
+    <Overview>Configure Unraid as a Docker Swarm worker using Docker-in-Docker. 
+This container runs a dedicated Docker Engine inside Unraid, allowing you to join a Swarm without modifying the host Docker daemon.
+
+Prerequisites (Unraid + macvlan):
+1) In Unraid, open Settings -&gt; Docker.
+2) Stop Docker, then set "Docker custom network type" to macvlan.
+3) Enable a custom network on eth0 (e.g., "br0" or "eth0" depending on your setup).
+4) Assign a fixed IP in the Unraid Docker template (matches the MyIP field). This IP must be
+free on your LAN and outside your DHCP pool.
+5) Start Docker again.
+
+Template configuration notes:
+- Privileged: recommended for best compatibility with nested containers and features like
+overlay networking. Not strictly required, but some inner containers may fail without it.
+- Hostname and /etc/hosts: update ExtraParams to set a meaningful hostname and host entry:
+--hostname='Tower' --add-host='Tower:127.0.0.1'
+Replace "Tower" with your Unraid server name or desired node name.
+- ExtraParams: you can remove --gpus=1 if you do not want GPU access, or set it to a
+specific GPU UUID.
+
+After container start (joining the Swarm):
+1) On your Swarm manager node, generate a worker join token:
+docker swarm join-token worker
+2) Copy the join command that it outputs. It looks like:
+docker swarm join --token &lt;TOKEN&gt; &lt;MANAGER_IP&gt;:2377
+3) Enter the container console (or use docker exec) and run the join command inside this
+container.
+4) Verify on the manager:
+docker node ls
+You should see this node listed as a worker.
+
+Optional:
+- If you want the inner Docker daemon to persist data, ensure the /var/lib/docker path maps
+to a stable storage path as configured in the template.
+- For TLS client certs or custom daemon config, use the mapped /certs and /etc/docker paths.
+- You can set the default runtime by writing /etc/docker/daemon.json in the bound config path
+(Path: Docker config). Example:
+> {
+>     "runtimes": {
+>         "nvidia": {
+>             "args": [],
+>             "path": "nvidia-container-runtime"
+>         }
+>     }
+> }
+    </Overview>
+    <Category>Productivity: Tools:Utilities Other:</Category>
+    <WebUI />
+    <TemplateURL>
+        https://raw.githubusercontent.com/Josh5/unraid-docker-templates/master/josh5/dind-swarm-worker.xml</TemplateURL>
+    <Icon>
+        https://raw.githubusercontent.com/docker-library/docs/471fa6e4cb58062ccbf91afc111980f9c7004981/swarm/logo.png</Icon>
+    <ExtraParams>--gpus=1 --hostname='Tower' --add-host='Tower:127.0.0.1'</ExtraParams>
+    <PostArgs />
+    <CPUset />
+    <DateInstalled>1712635787</DateInstalled>
+    <DonateText />
+    <DonateLink />
+    <Requires />
+    <Config Name="Path: Certificate" Target="/certs"
+        Default="/mnt/user/system/dind-swarm-worker/certs" Mode="rw" Description="" Type="Path"
+        Display="always" Required="false" Mask="false">/mnt/user/system/dind-swarm-worker/certs</Config>
+    <Config Name="Path: Docker storage" Target="/var/lib/docker"
+        Default="/mnt/user/system/dind-swarm-worker/var/" Mode="rw" Description="" Type="Path"
+        Display="always" Required="false" Mask="false">/var/lib/docker/dind-var/dind-swarm-worker</Config>
+    <Config Name="Path: Docker config" Target="/etc/docker"
+        Default="/mnt/user/system/dind-swarm-worker/etc" Mode="rw" Description="" Type="Path"
+        Display="always" Required="false" Mask="false">/mnt/user/system/dind-swarm-worker/etc</Config>
+    <Config Name="Force Insecure TCP" Target="DOCKER_FORCE_INSECURE_TCP" Default="false" Mode=""
+        Description="Expose tcp://0.0.0.0:2375 even when TLS is enabled on 2376." Type="Variable"
+        Display="always" Required="false" Mask="false">false</Config>
+    <Config Name="Path: /mnt" Target="/mnt" Default="" Mode="rw"
+        Description="Provides direct access to the mounted disks" Type="Path" Display="always"
+        Required="false" Mask="false">/mnt</Config>
+    <Config Name="Timezone" Target="TZ" Default="Etc/UTC" Mode="" Description="Container timezone."
+        Type="Variable" Display="always" Required="false" Mask="false">Etc/UTC</Config>
+    <Config Name="Nvidia GPU UUID" Target="NVIDIA_VISIBLE_DEVICES" Default="all" Mode=""
+        Description="For users with multiple GPUs, add the ID found under the " Type="Variable"
+        Display="always" Required="false" Mask="false">all</Config>
+    <Config Name="Driver Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="all" Mode=""
+        Description="" Type="Variable" Display="always" Required="false" Mask="false">all</Config>
+    <TailscaleStateDir />
+</Container>
