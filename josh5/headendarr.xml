@@ -7,7 +7,7 @@
     <MyIP />
     <Shell>bash</Shell>
     <Privileged>false</Privileged>
-    <Support>https://unmanic.app/discord</Support>
+    <Support>https://streamingtech.co.nz/discord</Support>
     <Project>https://headendarr.github.io/Headendarr/</Project>
     <Overview>Headendarr is a powerful management layer for TVHeadend, designed to simplify the
         orchestration of IPTV sources. It provides a modern, intuitive interface for channel
@@ -60,8 +60,11 @@
     <Category>MediaServer:Video</Category>
     <WebUI>http://[IP]:[PORT:9985]/</WebUI>
     <TemplateURL>
-        https://raw.githubusercontent.com/Josh5/unraid-docker-templates/refs/heads/master/josh5/headendarr.xml</TemplateURL>
-    <Icon>https://github.com/Josh5/Headendarr/raw/master/frontend/public/icons/Headendarr-Logo.png</Icon>
+        https://raw.githubusercontent.com/Josh5/unraid-docker-templates/refs/heads/master/josh5/headendarr.xml
+    </TemplateURL>
+    <Icon>
+        https://raw.githubusercontent.com/Headendarr/Headendarr/refs/heads/master/frontend/public/icons/Headendarr-Logo.png
+    </Icon>
     <ExtraParams />
     <PostArgs />
     <CPUset />
