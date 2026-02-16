@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<Container version="2">
+    <Name>Headendarr</Name>
+    <Repository>josh5/headendarr:latest</Repository>
+    <Registry>https://hub.docker.com/r/josh5/headendarr</Registry>
+    <Network>bridge</Network>
+    <MyIP />
+    <Shell>bash</Shell>
+    <Privileged>false</Privileged>
+    <Support>https://unmanic.app/discord</Support>
+    <Project>https://headendarr.github.io/Headendarr/</Project>
+    <Overview>Headendarr is a powerful management layer for TVHeadend, designed to simplify the
+        orchestration of IPTV sources. It provides a modern, intuitive interface for channel
+        mapping, EPG aggregation, and playlist filtering, acting as a centralised hub for your
+        personal streaming environment.
+
+        Headendarr acts as a high-performance proxy for M3U and HDHomeRun clients, supporting Plex,
+        Emby, Jellyfin, and Kodi.
+
+        Initial Login: **admin:admin**
+        -------------------------------------------------------------------------------------------
+        ## Key Features:
+        - **Scalable Channel Management**: Effortlessly manage and curate IPTV playlists with tens
+        of thousands of channels.
+        - **EPG Automation**: Aggregate multiple XMLTV sources with automatic metadata enrichment
+        for programme icons and descriptions.
+        - **Integrated HLS Proxy**: Features segment caching and intelligent pre-caching for
+        superior stream stability and smoothness.
+        - **Connection Sharing**: Serves multiple local clients from a single upstream connection to
+        maximise your provider's limits.
+        - **Automated TVH Orchestration**: Headendarr actively maintains your TVHeadend backend,
+        automatically configuring networks, muxes, and services based on your curated lineup.
+        - **Multi-User Sandboxing**: Create independent users with their own streaming keys and
+        private DVR sandboxes.
+        -------------------------------------------------------------------------------------------
+        ## How it works:
+
+        Headendarr bridges the gap between raw, often unreliable IPTV sources and your end clients.
+        It removes the steep learning curve of setting up TVHeadend for IPTV by automating the
+        complex configuration of networks, muxes, and EPG mapping.
+        -------------------------------------------------------------------------------------------
+        ## Advanced Configuration:
+
+        ### LIMIT CPU USE:
+        1) Toggle this Docker Container template editor to "Advanced View".
+        2) In the "Extra Parameters" field, add "--cpus='1'".
+        This value depends on the number of cores available to the container. To limit to 50%, set
+        this value to 0.5 * n cores. If you have 2 cores available to this container, "--cpus='.5'"
+        will equal 25% of that available CPU resources. To limit the CPU cores available to the
+        container, use "CPU Pinning"
+
+        ### LIMIT RAM ALLOCATION:
+        1) Toggle this Docker Container template editor to "Advanced View".
+        2) In the "Extra Parameters" field, add "--memory='1g'".
+        Tvheadend and Headendarr can use on average around 100MiB - 500 MiB of RAM for various
+        tasks.
+        Even though limiting RAM is unnecessary as this container should not ever need more than 1GB
+        RAM it is good practice to do so.
+</Overview>
+    <Category>MediaServer:Video</Category>
+    <WebUI>http://[IP]:[PORT:9985]/</WebUI>
+    <TemplateURL>
+        https://raw.githubusercontent.com/Josh5/unraid-docker-templates/refs/heads/master/josh5/headendarr.xml</TemplateURL>
+    <Icon>https://github.com/Josh5/Headendarr/raw/master/frontend/public/icons/Headendarr-Logo.png</Icon>
+    <ExtraParams />
+    <PostArgs />
+    <CPUset />
+    <DateInstalled />
+    <DonateText>Support me on Patreon</DonateText>
+    <DonateLink>https://www.patreon.com/josh5</DonateLink>
+    <Requires />
+    <Config Name="WebUI Port" Target="9985" Default="9985" Mode="tcp"
+        Description="Main webUI Port. This is the port that will be used to access and configure everything."
+        Type="Port" Display="always" Required="true" Mask="false">9985</Config>
+    <Config Name="HLS Proxy Port" Target="9987" Default="9987" Mode="tcp"
+        Description="[OPTIONAL] Exposes an optional HLS proxy.&#13;&#10;It is recommended to use an external HLS proxy if possible."
+        Type="Port" Display="always" Required="false" Mask="false">9987</Config>
+    <Config Name="Tvheadend WebUI Port" Target="9981" Default="9981" Mode="tcp"
+        Description="Tvheadend WebUI Port. This is used for streaming clients to connect to TVH via HTTP."
+        Type="Port" Display="always" Required="true" Mask="false">9981</Config>
+    <Config Name="Tvheadend HTSP Port" Target="9982" Default="9982" Mode="tcp"
+        Description="Tvheadend HTSP Port. This is used for streaming clients to connect to TVH via HTSP."
+        Type="Port" Display="always" Required="true" Mask="false">9982</Config>
+    <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/headendarr" Mode="rw"
+        Description="Where Headendarr stores its configuration files." Type="Path"
+        Display="advanced" Required="true" Mask="false">/mnt/user/appdata/headendarr</Config>
+    <Config Name="Recordings" Target="/recordings" Default="/mnt/user/appdata/headendarr/recordings"
+        Mode="rw" Description="Where TVHeadend will save its recordings." Type="Path"
+        Display="always" Required="true" Mask="false">/mnt/user/appdata/headendarr/recordings</Config>
+    <Config Name="Timeshift" Target="/timeshift" Default="/mnt/user/appdata/headendarr/timeshift"
+        Mode="rw"
+        Description="Where TVHeadend will store temporary timeshift buffer data. It is highly recommended to map this to a RAM-based location (e.g., /tmp or /dev/shm) or a dedicated tmpfs mount to avoid excessive disk wear, especially on spinning drives."
+        Type="Path" Display="advanced" Required="true" Mask="false">
+        /mnt/user/appdata/headendarr/timeshift</Config>
+    <Config Name="PUID" Target="PUID" Default="99" Mode="{3}" Description="Process User ID"
+        Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
+    <Config Name="PGID" Target="PGID" Default="100" Mode="{3}" Description="Process Group ID"
+        Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
+    <Config Name="TZ" Target="TZ" Default="Etc/UTC" Mode="{3}" Description="System Timezone"
+        Type="Variable" Display="advanced" Required="false" Mask="false">Etc/UTC</Config>
+    <TailscaleStateDir />
+</Container>
