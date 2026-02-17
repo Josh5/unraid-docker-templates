@@ -9,6 +9,7 @@
     <Privileged>false</Privileged>
     <Support>https://streamingtech.co.nz/discord</Support>
     <Project>https://headendarr.github.io/Headendarr/</Project>
+    <ReadMe />
     <Overview>Headendarr is a powerful management layer for TVHeadend, designed to simplify the
         orchestration of IPTV sources. It provides a modern, intuitive interface for channel
         mapping, EPG aggregation, and playlist filtering, acting as a centralised hub for your
@@ -111,11 +112,11 @@
         Mask="false"
         Target="/timeshift"
         Default="/mnt/user/appdata/headendarr/timeshift">/mnt/user/appdata/headendarr/timeshift</Config>
-    <Config Name="PUID" Target="PUID" Default="99" Mode="{3}" Description="Process User ID"
+    <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="Process User ID"
         Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
-    <Config Name="PGID" Target="PGID" Default="100" Mode="{3}" Description="Process Group ID"
+    <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Process Group ID"
         Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
-    <Config Name="TZ" Target="TZ" Default="Etc/UTC" Mode="{3}" Description="System Timezone"
-        Type="Variable" Display="advanced" Required="false" Mask="false">Etc/UTC</Config>
+    <Config Name="TZ" Target="TZ" Default="Etc/UTC" Mode="" Description="System Timezone"
+        Type="Variable" Display="advanced" Required="true" Mask="false">Etc/UTC</Config>
     <TailscaleStateDir />
 </Container>
