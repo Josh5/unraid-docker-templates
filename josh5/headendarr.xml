@@ -84,17 +84,33 @@
     <Config Name="Tvheadend HTSP Port" Target="9982" Default="9982" Mode="tcp"
         Description="Tvheadend HTSP Port. This is used for streaming clients to connect to TVH via HTSP."
         Type="Port" Display="always" Required="true" Mask="false">9982</Config>
-    <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/headendarr" Mode="rw"
-        Description="Where Headendarr stores its configuration files." Type="Path"
-        Display="advanced" Required="true" Mask="false">/mnt/user/appdata/headendarr</Config>
-    <Config Name="Recordings" Target="/recordings" Default="/mnt/user/appdata/headendarr/recordings"
-        Mode="rw" Description="Where TVHeadend will save its recordings." Type="Path"
-        Display="always" Required="true" Mask="false">/mnt/user/appdata/headendarr/recordings</Config>
-    <Config Name="Timeshift" Target="/timeshift" Default="/mnt/user/appdata/headendarr/timeshift"
+    <Config Name="Appdata"
+        Description="Where Headendarr stores its configuration files."
+        Type="Path"
+        Display="always"
+        Required="true"
         Mode="rw"
+        Mask="false"
+        Target="/config"
+        Default="/mnt/user/appdata/headendarr">/mnt/user/appdata/headendarr</Config>
+    <Config Name="Recordings"
+        Description="Where TVHeadend will save its recordings."
+        Type="Path"
+        Display="advanced"
+        Required="false"
+        Mode="rw"
+        Mask="false"
+        Target="/recordings"
+        Default="/mnt/user/appdata/headendarr/recordings">/mnt/user/appdata/headendarr/recordings</Config>
+    <Config Name="Timeshift"
         Description="Where TVHeadend will store temporary timeshift buffer data. It is highly recommended to map this to a RAM-based location (e.g., /tmp or /dev/shm) or a dedicated tmpfs mount to avoid excessive disk wear, especially on spinning drives."
-        Type="Path" Display="advanced" Required="true" Mask="false">
-        /mnt/user/appdata/headendarr/timeshift</Config>
+        Type="Path"
+        Display="advanced"
+        Required="false"
+        Mode="rw"
+        Mask="false"
+        Target="/timeshift"
+        Default="/mnt/user/appdata/headendarr/timeshift">/mnt/user/appdata/headendarr/timeshift</Config>
     <Config Name="PUID" Target="PUID" Default="99" Mode="{3}" Description="Process User ID"
         Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
     <Config Name="PGID" Target="PGID" Default="100" Mode="{3}" Description="Process Group ID"
