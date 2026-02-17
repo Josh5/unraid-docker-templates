@@ -10,53 +10,68 @@
     <Support>https://streamingtech.co.nz/discord</Support>
     <Project>https://headendarr.github.io/Headendarr/</Project>
     <ReadMe />
-    <Overview>Headendarr is a powerful management layer for TVHeadend, designed to simplify the
-        orchestration of IPTV sources. It provides a modern, intuitive interface for channel
-        mapping, EPG aggregation, and playlist filtering, acting as a centralised hub for your
-        personal streaming environment.
+    <Overview>
+Headendarr is a powerful management layer for TVHeadend,
+designed to simplify the orchestration of IPTV sources.
+It provides a modern, intuitive interface for channel
+mapping, EPG aggregation, and playlist filtering, acting
+as a centralised hub for your personal streaming
+environment.
 
-        Headendarr acts as a high-performance proxy for M3U and HDHomeRun clients, supporting Plex,
-        Emby, Jellyfin, and Kodi.
+Headendarr acts as a high-performance proxy for M3U and
+HDHomeRun clients, supporting Plex, Emby, Jellyfin, and
+Kodi.
 
-        Initial Login: **admin:admin**
-        -------------------------------------------------------------------------------------------
-        ## Key Features:
-        - **Scalable Channel Management**: Effortlessly manage and curate IPTV playlists with tens
-        of thousands of channels.
-        - **EPG Automation**: Aggregate multiple XMLTV sources with automatic metadata enrichment
-        for programme icons and descriptions.
-        - **Integrated HLS Proxy**: Features segment caching and intelligent pre-caching for
-        superior stream stability and smoothness.
-        - **Connection Sharing**: Serves multiple local clients from a single upstream connection to
-        maximise your provider's limits.
-        - **Automated TVH Orchestration**: Headendarr actively maintains your TVHeadend backend,
-        automatically configuring networks, muxes, and services based on your curated lineup.
-        - **Multi-User Sandboxing**: Create independent users with their own streaming keys and
-        private DVR sandboxes.
-        -------------------------------------------------------------------------------------------
-        ## How it works:
+Initial Login: **admin:admin**
+------------------------------------------------------------
+## Key Features:
+- **Scalable Channel Management**: Effortlessly manage and
+curate IPTV playlists with tens of thousands of channels.
+- **EPG Automation**: Aggregate multiple XMLTV sources with
+automatic metadata enrichment for programme icons and
+descriptions.
+- **Integrated HLS Proxy**: Features segment caching and
+intelligent pre-caching for superior stream stability and
+smoothness.
+- **Connection Sharing**: Serves multiple local clients from
+a single upstream connection to maximise your provider's
+limits.
+- **Automated TVH Orchestration**: Headendarr actively
+maintains your TVHeadend backend, automatically configuring
+networks, muxes, and services based on your curated lineup.
+- **Multi-User Sandboxing**: Create independent users with
+their own streaming keys and private DVR sandboxes.
+------------------------------------------------------------
+## How it works:
 
-        Headendarr bridges the gap between raw, often unreliable IPTV sources and your end clients.
-        It removes the steep learning curve of setting up TVHeadend for IPTV by automating the
-        complex configuration of networks, muxes, and EPG mapping.
-        -------------------------------------------------------------------------------------------
-        ## Advanced Configuration:
+Headendarr bridges the gap between raw, often unreliable
+IPTV sources and your end clients.
+It removes the steep learning curve of setting up TVHeadend
+for IPTV by automating the complex configuration of
+networks, muxes, and EPG mapping.
+------------------------------------------------------------
+## Advanced Configuration:
 
-        ### LIMIT CPU USE:
-        1) Toggle this Docker Container template editor to "Advanced View".
-        2) In the "Extra Parameters" field, add "--cpus='1'".
-        This value depends on the number of cores available to the container. To limit to 50%, set
-        this value to 0.5 * n cores. If you have 2 cores available to this container, "--cpus='.5'"
-        will equal 25% of that available CPU resources. To limit the CPU cores available to the
-        container, use "CPU Pinning"
+### LIMIT CPU USE:
+1) Toggle this Docker Container template editor to
+"Advanced View".
+2) In the "Extra Parameters" field, add "--cpus='1'".
+This value depends on the number of cores available to the
+container. To limit to 50%, set this value to 0.5 * n
+cores. If you have 2 cores available to this container,
+"--cpus='.5'" will equal 25% of that available CPU
+resources. To limit the CPU cores available to the
+container, use "CPU Pinning"
 
-        ### LIMIT RAM ALLOCATION:
-        1) Toggle this Docker Container template editor to "Advanced View".
-        2) In the "Extra Parameters" field, add "--memory='1g'".
-        Tvheadend and Headendarr can use on average around 100MiB - 500 MiB of RAM for various
-        tasks.
-        Even though limiting RAM is unnecessary as this container should not ever need more than 1GB
-        RAM it is good practice to do so.
+### LIMIT RAM ALLOCATION:
+1) Toggle this Docker Container template editor to
+"Advanced View".
+2) In the "Extra Parameters" field, add "--memory='1g'".
+Tvheadend and Headendarr can use on average around 100MiB -
+500 MiB of RAM for various tasks.
+Even though limiting RAM is unnecessary as this container
+should not ever need more than 1GB RAM it is good practice
+to do so.
 </Overview>
     <Category>MediaServer:Video</Category>
     <WebUI>http://[IP]:[PORT:9985]/</WebUI>
