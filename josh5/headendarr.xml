@@ -91,9 +91,6 @@ to do so.
     <Config Name="WebUI Port" Target="9985" Default="9985" Mode="tcp"
         Description="Main webUI Port. This is the port that will be used to access and configure everything."
         Type="Port" Display="always" Required="true" Mask="false">9985</Config>
-    <Config Name="HLS Proxy Port" Target="9987" Default="9987" Mode="tcp"
-        Description="[OPTIONAL] Exposes an optional HLS proxy.&#13;&#10;It is recommended to use an external HLS proxy if possible."
-        Type="Port" Display="always" Required="false" Mask="false">9987</Config>
     <Config Name="Tvheadend WebUI Port" Target="9981" Default="9981" Mode="tcp"
         Description="Tvheadend WebUI Port. This is used for streaming clients to connect to TVH via HTTP."
         Type="Port" Display="always" Required="true" Mask="false">9981</Config>
