@@ -72,6 +72,21 @@ Tvheadend and Headendarr can use on average around 100MiB -
 Even though limiting RAM is unnecessary as this container
 should not ever need more than 1GB RAM it is good practice
 to do so.
+
+### DVB / GPU DEVICE PASSTHROUGH:
+If you use DVB tuners and/or hardware acceleration, map the
+device paths using "Extra Parameters" in Advanced View.
+
+Example (both DVB + DRI):
+"--device=/dev/dvb:/dev/dvb --device=/dev/dri:/dev/dri"
+
+Example (DVB only):
+"--device=/dev/dvb:/dev/dvb"
+
+Example (DRI only):
+"--device=/dev/dri:/dev/dri"
+
+After applying device mappings, restart the container.
 </Overview>
     <Category>MediaServer:Video</Category>
     <WebUI>http://[IP]:[PORT:9985]/</WebUI>
