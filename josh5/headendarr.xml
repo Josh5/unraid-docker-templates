@@ -145,5 +145,7 @@ After applying device mappings, restart the container.
         Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
     <Config Name="TZ" Target="TZ" Default="Etc/UTC" Mode="" Description="System Timezone"
         Type="Variable" Display="advanced" Required="true" Mask="false">Etc/UTC</Config>
+    <Config Name="PLEX_SERVERS_JSON" Target="PLEX_SERVERS_JSON" Default="" Mode="" Description="See https://headendarr.github.io/Headendarr/configuration/connectivity/plex for more details. Defines one or more Plex Media Servers that Headendarr should manage for Live TV and DVR integration. When set, Headendarr uses it to enable the Plex settings page and automatically create, update, and keep Plex HDHomeRun/XMLTV tuner configuration in sync."
+        Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
     <TailscaleStateDir />
 </Container>
