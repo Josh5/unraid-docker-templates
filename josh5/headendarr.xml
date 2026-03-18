@@ -139,6 +139,15 @@ After applying device mappings, restart the container.
         Mask="false"
         Target="/timeshift"
         Default="/mnt/user/appdata/headendarr/timeshift">/mnt/user/appdata/headendarr/timeshift</Config>
+    <Config Name="Library"
+        Description="Where Headendarr will write VOD library export files under /library for downstream apps such as Jellyfin. This is used for generated `.strm` files and the HTTP library metadata cache."
+        Type="Path"
+        Display="advanced"
+        Required="false"
+        Mode="rw"
+        Mask="false"
+        Target="/library"
+        Default="/mnt/user/appdata/headendarr/library">/mnt/user/appdata/headendarr/library</Config>
     <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="Process User ID"
         Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
     <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Process Group ID"
