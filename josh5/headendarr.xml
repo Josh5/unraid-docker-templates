@@ -121,6 +121,15 @@ After applying device mappings, restart the container.
         Mask="false"
         Target="/config"
         Default="/mnt/user/appdata/headendarr">/mnt/user/appdata/headendarr</Config>
+    <Config Name="CSO Cache"
+        Description="A temporary storage area used by the Channel Stream Orchestrator (CSO) for local segmented ingest and output handoff. It is highly recommended to map this to a RAM-based location (e.g., /dev/shm/headendarr) to improve performance and avoid disk wear. This path requires approximately 50MB of space per concurrent VOD stream. On Unraid, /dev/shm defaults to 50% of host RAM, which is typically sufficient."
+        Type="Path"
+        Display="advanced"
+        Required="false"
+        Mode="rw"
+        Mask="false"
+        Target="/tmp/cache"
+        Default="/dev/shm/headendarr">/dev/shm/headendarr</Config>
     <Config Name="Recordings"
         Description="Where TVHeadend will save its recordings."
         Type="Path"
