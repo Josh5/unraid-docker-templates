@@ -167,5 +167,7 @@ After applying device mappings, restart the container.
         Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
     <Config Name="TMDB_API_KEY" Target="TMDB_API_KEY" Default="" Mode="" Description="See https://headendarr.github.io/Headendarr/configuration/epgs for more details. Used for optional TMDB EPG metadata enrichment. Set this to either your TMDB API Read Access Token or your TMDB API Key from https://www.themoviedb.org/settings/api."
         Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+    <Config Name="VOD Cache Retention Minutes" Target="TIC_VOD_CACHE_RETENTION_MINUTES" Default="10" Mode="" Description="How long inactive cached VOD movies and episodes are kept in /timeshift/vod before automatic cleanup. Value is in minutes. Example: 10080 keeps cached VOD files for up to one week."
+        Type="Variable" Display="advanced" Required="false" Mask="false">10</Config>
     <TailscaleStateDir />
 </Container>
