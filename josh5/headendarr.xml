@@ -96,7 +96,7 @@ After applying device mappings, restart the container.
     <Icon>
         https://raw.githubusercontent.com/Headendarr/Headendarr/refs/heads/master/frontend/public/icons/Headendarr-Logo.png
     </Icon>
-    <ExtraParams />
+    <ExtraParams>--stop-timeout=30</ExtraParams>
     <PostArgs />
     <CPUset />
     <DateInstalled />
