@@ -19,7 +19,7 @@
         &#xD;
         &#xD;
         WARNING: Host networking supports one Steam Headless container only. To run more than one,
-        use macvlan networking and configure unique SUNSHINE_NAME values and appdata paths for every
+        use macvlan networking and configure unique hostname values and appdata paths for every
         container.</Overview>
     <ExtraSearchTerms>
         Steam Fedora KDE Plasma Wayland Gamescope Sunshine Moonlight NVIDIA AMD Intel VA-API NVENC
@@ -28,7 +28,7 @@
     <WebUI>https://[IP]:8483/</WebUI>
     <TemplateURL>https://steamheadless.com/docs/installation/deployment/unraid-template/</TemplateURL>
     <Icon>https://steamheadless.com/img/steam-headless-unraid-template-icon.png</Icon>
-    <ExtraParams>--security-opt writable-cgroups=true --security-opt seccomp=unconfined
+    <ExtraParams>--hostname=steam-headless --security-opt writable-cgroups=true --security-opt seccomp=unconfined
         --security-opt systempaths=unconfined --cgroupns private --cap-add SYS_ADMIN --cap-add
         SYS_PTRACE --cap-add NET_ADMIN --cap-add DAC_READ_SEARCH --cap-add SYS_NICE
         --device-cgroup-rule 'c 13:* rwm' --stop-signal SIGRTMIN+3 --stop-timeout 30
@@ -183,14 +183,6 @@
         Mode=""
         Display="advanced" Required="false" Mask="false"
         Type="Variable">true</Config>
-
-    <Config Name="Sunshine Name"
-        Description="Name advertised to Moonlight clients on the local network. Change this for every additional container."
-        Target="SUNSHINE_NAME"
-        Default="Steam Headless"
-        Mode=""
-        Display="advanced" Required="false" Mask="false"
-        Type="Variable">Steam Headless</Config>
 
     <Config Name="Virtual Seat"
         Description="[OPTIONAL] Advanced virtual input seat name. Leave blank to generate one automatically from the container identity."
