@@ -28,12 +28,12 @@
     <WebUI>https://[IP]:8483/</WebUI>
     <TemplateURL>https://steamheadless.com/docs/installation/deployment/unraid-template/</TemplateURL>
     <Icon>https://steamheadless.com/img/steam-headless-unraid-template-icon.png</Icon>
-    <ExtraParams>--hostname=steam-headless --security-opt writable-cgroups=true --security-opt seccomp=unconfined
-        --security-opt systempaths=unconfined --cgroupns private --cap-add SYS_ADMIN --cap-add
-        SYS_PTRACE --cap-add NET_ADMIN --cap-add DAC_READ_SEARCH --cap-add SYS_NICE
-        --device-cgroup-rule 'c 13:* rwm' --stop-signal SIGRTMIN+3 --stop-timeout 30
-        --pids-limit 8192 --shm-size 2g -t --tmpfs /run --tmpfs /run/lock --tmpfs /tmp --tmpfs
-        /dev/input:rw,dev,mode=0755</ExtraParams>
+    <ExtraParams>--hostname=steam-headless --security-opt writable-cgroups=true
+        --security-opt seccomp=unconfined --security-opt systempaths=unconfined --cgroupns private
+        --cap-add SYS_ADMIN --cap-add SYS_PTRACE --cap-add NET_ADMIN --cap-add DAC_READ_SEARCH
+        --cap-add SYS_NICE --device-cgroup-rule 'c 13:* rwm' --stop-signal SIGRTMIN+3
+        --stop-timeout 30 --pids-limit 8192 --shm-size 2g -t
+        --tmpfs /run --tmpfs /run/lock --tmpfs /tmp --tmpfs /dev/input:rw,dev,mode=0755</ExtraParams>
     <PostArgs />
     <CPUset />
     <DateInstalled />
@@ -104,30 +104,6 @@
         Display="always" Required="true" Mask="false"
         Type="Variable">100</Config>
 
-    <Config Name="Display Width"
-        Description="Initial virtual Wayland display width in pixels for a fresh desktop profile."
-        Target="INITIAL_DISPLAY_WIDTH"
-        Default="1920"
-        Mode=""
-        Display="advanced" Required="false" Mask="false"
-        Type="Variable">1920</Config>
-
-    <Config Name="Display Height"
-        Description="Initial virtual Wayland display height in pixels for a fresh desktop profile."
-        Target="INITIAL_DISPLAY_HEIGHT"
-        Default="1080"
-        Mode=""
-        Display="advanced" Required="false" Mask="false"
-        Type="Variable">1080</Config>
-
-    <Config Name="Display Refresh"
-        Description="Initial virtual Wayland display refresh rate in Hertz for a fresh desktop profile."
-        Target="INITIAL_DISPLAY_REFRESH"
-        Default="120"
-        Mode=""
-        Display="advanced" Required="false" Mask="false"
-        Type="Variable">120</Config>
-
     <Config Name="Local Time"
         Description="Provides the host timezone to the container."
         Target="/run/host-localtime"
@@ -169,7 +145,7 @@
         Type="Device">/dev/uhid</Config>
 
     <Config Name="Session Mode"
-        Description="Initial frontend mode. Use desktop for KDE Plasma or gaming for nested Gamescope and Steam Gamepad UI."
+        Description="Initial frontend mode. Use 'desktop' for KDE Plasma or 'gaming' for nested Gamescope and Steam Gamepad UI."
         Target="STEAM_HEADLESS_SESSION_MODE"
         Default="desktop"
         Mode=""
@@ -177,20 +153,12 @@
         Type="Variable">desktop</Config>
 
     <Config Name="Desktop Steam Autostart"
-        Description="Starts the optional Steam desktop client while Desktop Mode is active."
+        Description="When set to 'true' (default), the background systemd service starts Steam automatically with the desktop and restarts it after it closes. Set to 'false' to disable the autostart service while leaving Steam installed for manual launch."
         Target="ENABLE_STEAM_SYSTEMD_SERVICE"
         Default="true"
         Mode=""
         Display="advanced" Required="false" Mask="false"
         Type="Variable">true</Config>
-
-    <Config Name="Virtual Seat"
-        Description="[OPTIONAL] Advanced virtual input seat name. Leave blank to generate one automatically from the container identity."
-        Target="XDG_SEAT"
-        Default=""
-        Mode=""
-        Display="advanced" Required="false" Mask="false"
-        Type="Variable"></Config>
 
     <Config Name="Compositor Render Device"
         Description="[OPTIONAL] DRM render device used by the desktop compositor. Leave blank to select the first available render node."
